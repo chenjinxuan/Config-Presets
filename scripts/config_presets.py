@@ -336,10 +336,7 @@ class Script(scripts.Script):
                         config_preset_dropdown.style(container=False) #set to True to give it a white box to sit in
 
 
-                        config_preset_json = gr.JSON(
-                            label="Config json",
-                            elem_id="config_preset_txt2img_json",
-                        )
+                        config_preset_json = gr.JSON()
 
                         #self.txt2img_config_preset_dropdown = config_preset_dropdown
 
@@ -461,7 +458,7 @@ class Script(scripts.Script):
                                         [save_textbox] + [fields_checkboxgroup] + [component_map[comp_name] for comp_name in
                                                                                    component_ids if
                                                                                    component_map[comp_name] is not None]),
-                                     outputs=[config_preset_dropdown, save_textbox,config_preset_json],
+                                    outputs=[config_preset_dropdown, save_textbox,config_preset_json],
                                 )
                                 # save_button.click(  # need this to runa after save_config()
                                 #     fn=None,
@@ -554,7 +551,7 @@ def save_config(config_presets, component_map, config_file_name):
         print(f"[Config-Presets] Restarting UI...") # done in _js
         # update the dropdown with the new config preset, and clear the 'new preset name' textbox
 
-        return gr.Dropdown.update(value=new_setting_name, choices=list(config_presets.keys())), "",gr.JSON(value=new_setting_map)
+        return gr.Dropdown.update(value=new_setting_name, choices=list(config_presets.keys())), "",new_setting_map
 
         # this errors when adding a 2nd config preset
         # the solution is supposed to be updating the backend Gradio object to reflect the frontend dropdown values, but it doesn't work. still throws: "ValueError: 0 is not in list"
