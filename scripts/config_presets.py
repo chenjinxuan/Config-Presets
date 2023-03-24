@@ -437,7 +437,16 @@ class Script(scripts.Script):
                                     variant="primary",
                                     elem_id="config_preset_save_button",
                                 )
-
+                                export = gr.Button(
+                                    # value="Create",
+                                    value="export",
+                                    variant="primary",
+                                    elem_id="config_preset_export_button",
+                                )
+                                export.click(  # need this to runa after save_config()
+                                    fn=None,
+                                    _js="config_preset_settings_restart_gradio()",  # restart Gradio
+                                )
                                 save_button.click(
                                     fn=save_config(config_presets, component_map, config_file_name),
                                     inputs=list(
