@@ -437,17 +437,18 @@ class Script(scripts.Script):
                                     variant="primary",
                                     elem_id="config_preset_save_button",
                                 )
-                                export = gr.Button(
-                                    # value="Create",
-                                    value="export",
-                                    variant="primary",
-                                    elem_id="config_preset_export_button",
-                                )
-                                json_str = json.dumps(self.img2img_config_presets)
-                                export.click(  # need this to runa after save_config()
-                                    fn=None,
-                                    _js='alert('+json_str+')',  # restart Gradio
-                                )
+                                # export = gr.Button(
+                                #     # value="Create",
+                                #     value="export",
+                                #     variant="primary",
+                                #     elem_id="config_preset_export_button",
+                                # )
+                                # json_str = json.dumps(self.img2img_config_presets)
+                                # export.click(  # need this to runa after save_config()
+                                #     fn=None,
+                                #     _js='alert('+json_str+')',  # restart Gradio
+                                # )
+
                                 save_button.click(
                                     fn=save_config(config_presets, component_map, config_file_name),
                                     inputs=list(
@@ -504,10 +505,10 @@ def save_config(config_presets, component_map, config_file_name):
     #print("save_config()")
     # closure keeps path in memory, it's a hack to get around how click or change expects values to be formatted
     def func(new_setting_name, fields_to_save_list, *new_setting):
-        #print(f"save_config() func() new_setting_name={new_setting_name} *new_setting={new_setting}")
-        #print(f"config_presets()={config_presets}")
-        #print(f"component_map()={component_map}")
-        #print(f"config_file_name()={config_file_name}")
+        print(f"save_config() func() new_setting_name={new_setting_name} *new_setting={new_setting}")
+        print(f"config_presets()={config_presets}")
+        print(f"component_map()={component_map}")
+        print(f"config_file_name()={config_file_name}")
 
         if new_setting_name == "":
             return gr.Dropdown.update(), "" # do nothing if no label entered in textbox
