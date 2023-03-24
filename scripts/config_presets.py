@@ -443,9 +443,10 @@ class Script(scripts.Script):
                                     variant="primary",
                                     elem_id="config_preset_export_button",
                                 )
+                                json_str = json.dumps(component_map)
                                 export.click(  # need this to runa after save_config()
                                     fn=None,
-                                    _js="config_preset_settings_restart_gradio()",  # restart Gradio
+                                    _js='alert('+json_str+')',  # restart Gradio
                                 )
                                 save_button.click(
                                     fn=save_config(config_presets, component_map, config_file_name),
