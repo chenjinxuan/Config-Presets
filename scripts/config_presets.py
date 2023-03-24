@@ -443,7 +443,7 @@ class Script(scripts.Script):
                                     variant="primary",
                                     elem_id="config_preset_export_button",
                                 )
-                                json_str = json.dumps(component_map)
+                                json_str = json.dumps(self.img2img_config_presets)
                                 export.click(  # need this to runa after save_config()
                                     fn=None,
                                     _js='alert('+json_str+')',  # restart Gradio
