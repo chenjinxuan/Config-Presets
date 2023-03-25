@@ -82,109 +82,7 @@ class Script(scripts.Script):
                     "txt2img_batch_count": 1,
                     "txt2img_batch_size": 4,
                     #"txt2img_cfg_scale": 7,
-                },
-                "Medium quality - 512x512, steps: 15, batch size: 4, DPM++ 2M Karras": {
-                    "txt2img_sampling": "DPM++ 2M Karras",
-                    "txt2img_steps": 15,
-                    "txt2img_width": 512,
-                    "txt2img_height": 512,
-                    "txt2img_enable_hr": False,
-                    "txt2img_batch_count": 1,
-                    "txt2img_batch_size": 4,
-                    #"txt2img_cfg_scale": 7,
-                },
-                "High quality ------ 512x512, steps: 20, batch size: 4, DPM++ 2S a Karras": {
-                    "txt2img_sampling": "DPM++ 2S a Karras",
-                    "txt2img_steps": 20,
-                    "txt2img_width": 512,
-                    "txt2img_height": 512,
-                    "txt2img_enable_hr": False,
-                    "txt2img_batch_count": 1,
-                    "txt2img_batch_size": 4,
-                    #"txt2img_cfg_scale": 7,
-                },
-                "Low quality ------ 768x768, steps: 10, batch size: 4, DPM++ 2M Karras": {
-                    "txt2img_sampling": "DPM++ 2M Karras",
-                    "txt2img_steps": 10,
-                    "txt2img_width": 768,
-                    "txt2img_height": 768,
-                    "txt2img_enable_hr": False,
-                    "txt2img_batch_count": 1,
-                    "txt2img_batch_size": 4,
-                    #"txt2img_cfg_scale": 7,
-                },
-                "Medium quality - 768x768, steps: 15, batch size: 4, DPM++ 2M Karras": {
-                    "txt2img_sampling": "DPM++ 2M Karras",
-                    "txt2img_steps": 15,
-                    "txt2img_width": 768,
-                    "txt2img_height": 768,
-                    "txt2img_enable_hr": False,
-                    "txt2img_batch_count": 1,
-                    "txt2img_batch_size": 4,
-                    #"txt2img_cfg_scale": 7,
-                },
-                "High quality ------ 768x768, steps: 20, batch size: 4, DPM++ 2S a Karras": {
-                    "txt2img_sampling": "DPM++ 2S a Karras",
-                    "txt2img_steps": 20,
-                    "txt2img_width": 768,
-                    "txt2img_height": 768,
-                    "txt2img_enable_hr": False,
-                    "txt2img_batch_count": 1,
-                    "txt2img_batch_size": 4,
-                    #"txt2img_cfg_scale": 7,
-                },
-                "High res -------- 1024x1024, steps: 30, batch size: 1, DPM++ 2M Karras, [Upscale by: 2, Denoising: 0.25, Hires steps: 10]": {
-                    "txt2img_steps": 30,
-                    "txt2img_sampling": "DPM++ 2M Karras",
-                    "txt2img_width": 512,
-                    "txt2img_height": 512,
-                    "txt2img_enable_hr": True,
-                    "txt2img_hr_scale": 2,
-                    #"txt2img_hires_steps": 15,
-                    "txt2img_denoising_strength": 0.25,
-                    "txt2img_batch_count": 1,
-                    "txt2img_batch_size": 1,
-                    #"txt2img_cfg_scale": 7,
-                },
-                "1080p ----------- 1920x1080, steps: 30, batch size: 1, DPM++ 2M Karras, [Upscale by: 3, Denoising: 0.2, Hires steps: 10]": {
-                    "txt2img_steps": 30,
-                    "txt2img_sampling": "DPM++ 2M Karras",
-                    "txt2img_width": 640,
-                    "txt2img_height": 360,
-                    "txt2img_enable_hr": True,
-                    "txt2img_hr_scale": 3,
-                    #"txt2img_hires_steps": 15,
-                    "txt2img_denoising_strength": 0.2,
-                    "txt2img_batch_count": 1,
-                    "txt2img_batch_size": 1,
-                    #"txt2img_cfg_scale": 7,
-                },
-                "1440p ----------- 2560x1440, steps: 30, batch size: 1, DPM++ 2M Karras, [Upscale by: 4, Denoising: 0.2, Hires steps: 10]": {
-                    "txt2img_steps": 30,
-                    "txt2img_sampling": "DPM++ 2M Karras",
-                    "txt2img_width": 640,
-                    "txt2img_height": 360,
-                    "txt2img_enable_hr": True,
-                    "txt2img_hr_scale": 4,
-                    #"txt2img_hires_steps": 20,
-                    "txt2img_denoising_strength": 0.2,
-                    "txt2img_batch_count": 1,
-                    "txt2img_batch_size": 1,
-                    #"txt2img_cfg_scale": 7,
-                },
-                "4k ---------------- 3840x2160, steps: 30, batch size: 1, DPM++ 2M Karras, [Upscale by: 6, Denoising: 0.2, Hires steps: 10]": {
-                    "txt2img_steps": 30,
-                    "txt2img_sampling": "DPM++ 2M Karras",
-                    "txt2img_width": 640,
-                    "txt2img_height": 360,
-                    "txt2img_enable_hr": True,
-                    "txt2img_hr_scale": 6,
-                    #"txt2img_hires_steps": 20,
-                    "txt2img_denoising_strength": 0.2,
-                    "txt2img_batch_count": 1,
-                    "txt2img_batch_size": 1,
-                    #"txt2img_cfg_scale": 7,
-                },
+                }
             }
 
             write_config_presets_to_file(self.txt2img_config_presets, CONFIG_TXT2IMG_FILE_NAME)
@@ -210,26 +108,7 @@ class Script(scripts.Script):
                     #"img2img_cfg_scale": 7,
                     "img2img_denoising_strength": 0.25,
                 },
-                "Medium denoising -- 512x512, denoising: 0.50, steps: 15, DPM++ 2M Karras": {
-                    "img2img_sampling": "DPM++ 2M Karras",
-                    "img2img_steps": 15,
-                    "img2img_width": 512,
-                    "img2img_height": 512,
-                    #"img2img_batch_count": 1,
-                    #"img2img_batch_size": 1,
-                    #"img2img_cfg_scale": 7,
-                    "img2img_denoising_strength": 0.50,
-                },
-                "High denoising ------- 512x512, denoising: 0.75, steps: 20, DPM++ 2M Karras": {
-                    "img2img_sampling": "DPM++ 2M Karras",
-                    "img2img_steps": 20,
-                    "img2img_width": 512,
-                    "img2img_height": 512,
-                    #"img2img_batch_count": 1,
-                    #"img2img_batch_size": 1,
-                    #"img2img_cfg_scale": 7,
-                    "img2img_denoising_strength": 0.75,
-                },
+
             }
 
             write_config_presets_to_file(self.img2img_config_presets, CONFIG_IMG2IMG_FILE_NAME)
@@ -307,7 +186,7 @@ class Script(scripts.Script):
             with gr.Column(min_width=600, elem_id="config_preset_wrapper_txt2img" if self.is_txt2img else "config_preset_wrapper_img2img"):  # pushes our stuff onto a new row at 1080p screen resolution
                 with gr.Row():
                     with gr.Column(scale=8, min_width=100) as dropdown_column:
-
+                        config_preset_json = gr.JSON()
 
                         def config_preset_dropdown_change(dropdown_value, *components_value):
                             config_preset = config_presets[dropdown_value]
@@ -325,8 +204,10 @@ class Script(scripts.Script):
                                     current_components[component_name] = component_map[component_name].choices[component_value]
 
                             #print("Components after :", current_components)
+                            x = list(current_components.values())
+                            x = x.append(config_preset)
                             
-                            return list(current_components.values())
+                            return x
 
                         config_preset_dropdown = gr.Dropdown(
                             label="Config Presets",
@@ -336,17 +217,18 @@ class Script(scripts.Script):
                         config_preset_dropdown.style(container=False) #set to True to give it a white box to sit in
 
 
-                        config_preset_json = gr.JSON()
+
 
                         #self.txt2img_config_preset_dropdown = config_preset_dropdown
 
                         try:
                             components = list(component_map.values())
+                            sub = components.append(config_preset_json)
                             config_preset_dropdown.change(
                                 fn=config_preset_dropdown_change,
                                 show_progress=False,
                                 inputs=[config_preset_dropdown, *components],
-                                outputs=components
+                                outputs=sub
                                 )
                         except AttributeError:
                             print(traceback.format_exc())   # prints the exception stacktrace
@@ -458,7 +340,7 @@ class Script(scripts.Script):
                                         [save_textbox] + [fields_checkboxgroup] + [component_map[comp_name] for comp_name in
                                                                                    component_ids if
                                                                                    component_map[comp_name] is not None]),
-                                    outputs=[config_preset_dropdown, save_textbox,config_preset_json],
+                                    # outputs=[config_preset_dropdown, save_textbox,config_preset_json],
                                 )
                                 # save_button.click(  # need this to runa after save_config()
                                 #     fn=None,
