@@ -37,7 +37,7 @@ class Script(scripts.Script):
             "txt2img_hires_steps",
             "txt2img_denoising_strength",
             "txt2img_cfg_scale",
-            "component-1285",
+           # "component-1285",
         ]
         self.img2img_component_ids = [   # mirrors the config_preset_dropdown.change(output) events and config_preset_dropdown_change()
             "img2img_sampling",
@@ -156,7 +156,7 @@ class Script(scripts.Script):
                     print(component)
                     print(component_name)
                     print(f"[ERROR][Config-Presets] The component '{component_name}' no longer exists in the Web UI. Try updating the Config-Presets extension. This extension will not work until this issue is resolved.")
-                    continue
+                    return
 
             # Mark components with type "index" to be transform
             index_type_components = []
