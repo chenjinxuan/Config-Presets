@@ -201,11 +201,13 @@ class Script(scripts.Script):
                             for component_name, component_value in current_components.items():
                                 #print(component_name, component_value)
                                 if component_name in index_type_components and type(component_value) == int:
-                                    current_components[component_name] = component_map[component_name].choices[component_value]
+                                    current_components[component_name] = comxponent_map[component_name].choices[component_value]
 
                             #print("Components after :", current_components)
+                            x = list(current_components.values())
+                            x.append(config_preset)
 
-                            return list(current_components.values()), config_preset
+                            return x
 
                         config_preset_dropdown = gr.Dropdown(
                             label="Config Presets",
@@ -221,12 +223,12 @@ class Script(scripts.Script):
 
                         try:
                             components = list(component_map.values())
-                            sub = components.append(config_preset_json)
+                            # sub = components.append(config_preset_json)
                             config_preset_dropdown.change(
                                 fn=config_preset_dropdown_change,
                                 show_progress=False,
                                 inputs=[config_preset_dropdown, *components],
-                                outputs=sub
+                                outputs=components
                                 )
                         except AttributeError:
                             print(traceback.format_exc())   # prints the exception stacktrace
