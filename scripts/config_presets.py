@@ -204,9 +204,8 @@ class Script(scripts.Script):
                                     current_components[component_name] = component_map[component_name].choices[component_value]
 
                             #print("Components after :", current_components)
-                            x = list(current_components.values())
-                            print(x)
-                            return x, config_preset
+
+                            return list(current_components.values()), config_preset
 
                         config_preset_dropdown = gr.Dropdown(
                             label="Config Presets",
@@ -222,11 +221,12 @@ class Script(scripts.Script):
 
                         try:
                             components = list(component_map.values())
+                            sub = components.append(config_preset_json)
                             config_preset_dropdown.change(
                                 fn=config_preset_dropdown_change,
                                 show_progress=False,
                                 inputs=[config_preset_dropdown, *components],
-                                outputs=[components, config_preset_json]
+                                outputs=sub
                                 )
                         except AttributeError:
                             print(traceback.format_exc())   # prints the exception stacktrace
