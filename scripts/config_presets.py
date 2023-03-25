@@ -139,8 +139,6 @@ class Script(scripts.Script):
         # print(component_map)
         #if component.label in self.component_map:
         if component.elem_id in component_map:
-            print(component.elem_id)
-            print(component)
             component_map[component.elem_id] = component
             #print(f"[Config-Presets][DEBUG]: found component: {component.elem_id} {component}")
 
@@ -155,8 +153,10 @@ class Script(scripts.Script):
             for component_name, component in component_map.items():
                 #print(component_name, component_type)
                 if component is None:
+                    print(component)
+                    print(component_name)
                     print(f"[ERROR][Config-Presets] The component '{component_name}' no longer exists in the Web UI. Try updating the Config-Presets extension. This extension will not work until this issue is resolved.")
-                    return
+                    continue
 
             # Mark components with type "index" to be transform
             index_type_components = []
