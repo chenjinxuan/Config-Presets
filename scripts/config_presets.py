@@ -223,7 +223,7 @@ class Script(scripts.Script):
 
                         try:
                             components = list(component_map.values())
-                            # sub = components.append(config_preset_json)
+                            components.append(config_preset_json)
                             config_preset_dropdown.change(
                                 fn=config_preset_dropdown_change,
                                 show_progress=False,
