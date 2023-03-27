@@ -153,7 +153,9 @@ class Script(scripts.Script):
         #if component.elem_id == "txt2img_style2_index": #doesn't work, need to be added after all the components we edit are loaded
         #if component.elem_id == "open_folder": #bottom of the image gallery
         if component.elem_id == "txt2img_generation_info_button" or component.elem_id == "img2img_generation_info_button": #very bottom of the txt2img/img2img image gallery
-            # print(component)
+            print("111111111111111111")
+            print(component.elem_id)
+            print("222222222222222222")
             #print("Creating dropdown values...")
             #print("key/value pairs in component_map:")
             # before we create the dropdown, we need to check if each component was found successfully to prevent errors from bricking the Web UI
