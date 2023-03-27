@@ -127,6 +127,8 @@ class Script(scripts.Script):
 
     def after_component(self, component, **kwargs):
         print(component.label)
+        print(component.elem_id)
+        print(component.value)
         print("===========")
         # to generalize the code, detect if we are in txt2img tab or img2img tab, and then use the corresponding self variables
         # so we can use the same code for both tabs
