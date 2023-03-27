@@ -161,6 +161,8 @@ class Script(scripts.Script):
     def after_component(self, component, **kwargs):
         # to generalize the code, detect if we are in txt2img tab or img2img tab, and then use the corresponding self variables
         # so we can use the same code for both tabs
+        print(component.elem_id)
+        print("========")
         component_map = None
         component_ids = None
         config_file_name = None
