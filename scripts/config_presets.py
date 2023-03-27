@@ -25,7 +25,7 @@ class Script(scripts.Script):
         # These are the settings from the UI that are saved for each preset
         self.txt2img_component_ids = [   # mirrors the config_preset_dropdown.change(output) events and config_preset_dropdown_change()
             "txt2img_prompt",
-            "txt2img_neg_prompt"
+            "txt2img_neg_prompt",
             "txt2img_sampling",
             "txt2img_steps",
             "txt2img_width",
