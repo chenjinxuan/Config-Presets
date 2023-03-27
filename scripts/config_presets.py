@@ -221,7 +221,7 @@ class Script(scripts.Script):
             with gr.Column(min_width=600, elem_id="config_preset_wrapper_txt2img" if self.is_txt2img else "config_preset_wrapper_img2img"):  # pushes our stuff onto a new row at 1080p screen resolution
                 with gr.Row():
                     with gr.Column(scale=8, min_width=100) as dropdown_column:
-                        config_preset_json = gr.JSON()
+
 
                         def config_preset_dropdown_change(dropdown_value, *components_value):
                             config_preset = config_presets[dropdown_value]
@@ -251,7 +251,7 @@ class Script(scripts.Script):
                         )
                         config_preset_dropdown.style(container=False) #set to True to give it a white box to sit in
 
-
+                        config_preset_json = gr.JSON()
 
 
                         #self.txt2img_config_preset_dropdown = config_preset_dropdown
@@ -300,31 +300,31 @@ class Script(scripts.Script):
                                     outputs=[config_preset_dropdown],
                                 )
 
-                            with gr.Column(scale=2, min_width=55):
-                                def open_file(f):
-                                    path = os.path.normpath(f)
+                            # with gr.Column(scale=2, min_width=55):
+                            #     def open_file(f):
+                            #         path = os.path.normpath(f)
+                            #
+                            #         if not os.path.exists(path):
+                            #             print(f'Config Presets: The file at "{path}" does not exist.')
+                            #             return
+                            #
+                            #         # copied from ui.py:538
+                            #         if platform.system() == "Windows":
+                            #             os.startfile(path)
+                            #         elif platform.system() == "Darwin":
+                            #             sp.Popen(["open", path])
+                            #         else:
+                            #             sp.Popen(["xdg-open", path])
 
-                                    if not os.path.exists(path):
-                                        print(f'Config Presets: The file at "{path}" does not exist.')
-                                        return
-
-                                    # copied from ui.py:538
-                                    if platform.system() == "Windows":
-                                        os.startfile(path)
-                                    elif platform.system() == "Darwin":
-                                        sp.Popen(["open", path])
-                                    else:
-                                        sp.Popen(["xdg-open", path])
-
-                                open_config_file_button = gr.Button(
-                                    value="Open config file...",
-                                    elem_id="config_presets_open_config_file_button",
-                                )
-                                open_config_file_button.click(
-                                    fn=lambda: open_file(f"{BASEDIR}/{config_file_name}"),
-                                    inputs=[],
-                                    outputs=[],
-                                )
+                                # open_config_file_button = gr.Button(
+                                #     value="Open config file...",
+                                #     elem_id="config_presets_open_config_file_button",
+                                # )
+                                # open_config_file_button.click(
+                                #     fn=lambda: open_file(f"{BASEDIR}/{config_file_name}"),
+                                #     inputs=[],
+                                #     outputs=[],
+                                # )
 
                             with gr.Column(scale=2, min_width=50):
                                 cancel_button = gr.Button(
