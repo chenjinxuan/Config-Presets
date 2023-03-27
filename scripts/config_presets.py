@@ -41,6 +41,21 @@ class Script(scripts.Script):
             "txt2img_cfg_scale",
             "ctl_enabled",
             "ctl_scribble_mode",
+            "ctl_rgbbgr_mode",
+            "ctl_lowvram",
+            "ctl_guess_mode",
+            "ctl_module",
+            "ctl_model",
+            "ctl_weight",
+            "ctl_guidance_start",
+            "ctl_guidance_end",
+            "ctl_processor_res",
+            "ctl_threshold_a",
+            "ctl_threshold_b",
+            "ctl_resize_mode",
+            "ctl_canvas_width",
+            "ctl_canvas_height",
+
            # "component-1285",
         ]
         self.img2img_component_ids = [   # mirrors the config_preset_dropdown.change(output) events and config_preset_dropdown_change()
@@ -53,7 +68,24 @@ class Script(scripts.Script):
             "img2img_cfg_scale",
             "img2img_denoising_strength",
             "img2img_restore_faces",
+            "ctl_enabled",
+            "ctl_scribble_mode",
+            "ctl_rgbbgr_mode",
+            "ctl_lowvram",
+            "ctl_guess_mode",
+            "ctl_module",
+            "ctl_model",
+            "ctl_weight",
+            "ctl_guidance_start",
+            "ctl_guidance_end",
+            "ctl_processor_res",
+            "ctl_threshold_a",
+            "ctl_threshold_b",
+            "ctl_resize_mode",
+            "ctl_canvas_width",
+            "ctl_canvas_height",
         ]
+
 
         # Mapping between component labels and the actual components in ui.py
         self.txt2img_component_map = {k: None for k in self.txt2img_component_ids}  # gets filled up in the after_component() method
@@ -127,9 +159,6 @@ class Script(scripts.Script):
         return scripts.AlwaysVisible    # hide this script in the Scripts dropdown
 
     def after_component(self, component, **kwargs):
-        print(component.elem_id)
-        print(component.value)
-        print("===========")
         # to generalize the code, detect if we are in txt2img tab or img2img tab, and then use the corresponding self variables
         # so we can use the same code for both tabs
         component_map = None
