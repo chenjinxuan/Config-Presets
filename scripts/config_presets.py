@@ -126,8 +126,7 @@ class Script(scripts.Script):
         return scripts.AlwaysVisible    # hide this script in the Scripts dropdown
 
     def after_component(self, component, **kwargs):
-        aa = json.dumps(component)
-        print(aa)
+        print(dir(component))
         print("===========")
         # to generalize the code, detect if we are in txt2img tab or img2img tab, and then use the corresponding self variables
         # so we can use the same code for both tabs
