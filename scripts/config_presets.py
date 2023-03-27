@@ -126,9 +126,7 @@ class Script(scripts.Script):
         return scripts.AlwaysVisible    # hide this script in the Scripts dropdown
 
     def after_component(self, component, **kwargs):
-        print(component.label)
-        print(component.elem_id)
-        print(component.value)
+        print(repr(component))
         print("===========")
         # to generalize the code, detect if we are in txt2img tab or img2img tab, and then use the corresponding self variables
         # so we can use the same code for both tabs
@@ -153,17 +151,12 @@ class Script(scripts.Script):
         #if component.elem_id == "txt2img_style2_index": #doesn't work, need to be added after all the components we edit are loaded
         #if component.elem_id == "open_folder": #bottom of the image gallery
         if component.elem_id == "txt2img_generation_info_button" or component.elem_id == "img2img_generation_info_button": #very bottom of the txt2img/img2img image gallery
-            print("111111111111111111")
-            print(component.elem_id)
-            print("222222222222222222")
             #print("Creating dropdown values...")
             #print("key/value pairs in component_map:")
             # before we create the dropdown, we need to check if each component was found successfully to prevent errors from bricking the Web UI
             for component_name, component in component_map.items():
                 #print(component_name, component_type)
                 if component is None:
-                    print(component)
-                    print(component_name)
                     print(f"[ERROR][Config-Presets] The component '{component_name}' no longer exists in the Web UI. Try updating the Config-Presets extension. This extension will not work until this issue is resolved.")
                     return
 
