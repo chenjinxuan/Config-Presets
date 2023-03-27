@@ -39,7 +39,7 @@ class Script(scripts.Script):
             "txt2img_hires_steps",
             "txt2img_denoising_strength",
             "txt2img_cfg_scale",
-            "setting_sd_model_checkpoint",
+            # "setting_sd_model_checkpoint",
            # "component-1285",
         ]
         self.img2img_component_ids = [   # mirrors the config_preset_dropdown.change(output) events and config_preset_dropdown_change()
@@ -126,6 +126,8 @@ class Script(scripts.Script):
         return scripts.AlwaysVisible    # hide this script in the Scripts dropdown
 
     def after_component(self, component, **kwargs):
+        print(component.elem_id)
+        print("===========")
         # to generalize the code, detect if we are in txt2img tab or img2img tab, and then use the corresponding self variables
         # so we can use the same code for both tabs
         component_map = None
