@@ -39,7 +39,7 @@ class Script(scripts.Script):
             "txt2img_hires_steps",
             "txt2img_denoising_strength",
             "txt2img_cfg_scale",
-             "ctl_enabled",
+            "ctl_enabled",
             "ctl_scribble_mode",
            # "component-1285",
         ]
