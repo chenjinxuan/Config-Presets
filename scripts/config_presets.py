@@ -345,7 +345,7 @@ class Script(scripts.Script):
                             elem_id="config_preset_export_button",
                         )
                         export_button.click(
-                            _js="exportData()"
+                            _js="function() { exportData() }"
                         )
 
                 with gr.Row() as collapsable_row:
