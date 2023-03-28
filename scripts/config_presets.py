@@ -345,6 +345,7 @@ class Script(scripts.Script):
                             elem_id="config_preset_export_button",
                         )
                         export_button.click(
+                            fn=None,
                             _js="function() { exportData() }"
                         )
 
