@@ -157,9 +157,9 @@ class Script(scripts.Script):
     def show(self, is_img2img):
         #return True
         return scripts.AlwaysVisible    # hide this script in the Scripts dropdown
-    def before_component(self, component, **kwargs):
-        print(kwargs)
-        print("111111111111")
+    # def before_component(self, component, **kwargs):
+    #     print(kwargs)
+    #     print("111111111111")
 
     def after_component(self, component, **kwargs):
         # to generalize the code, detect if we are in txt2img tab or img2img tab, and then use the corresponding self variables
@@ -254,7 +254,7 @@ class Script(scripts.Script):
                         )
                         config_preset_dropdown.style(container=False) #set to True to give it a white box to sit in
 
-                        config_preset_json = gr.JSON()
+                        config_preset_json = gr.JSON(elem_id="config_preset_json")
 
 
                         #self.txt2img_config_preset_dropdown = config_preset_dropdown
