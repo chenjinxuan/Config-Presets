@@ -158,8 +158,7 @@ class Script(scripts.Script):
         #return True
         return scripts.AlwaysVisible    # hide this script in the Scripts dropdown
     def before_component(self, component, **kwargs):
-        print(component.get_config)
-        print(dir(component))
+        print(repr(component))
         print("111111111111")
 
     def after_component(self, component, **kwargs):
