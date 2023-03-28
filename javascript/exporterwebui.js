@@ -1,6 +1,6 @@
-//
-//
-//
+
+
+
 // function attachGalleryListeners1(tab_name) {
 //   gallery = gradioApp().querySelector('#'+tab_name+'_gallery')
 //   gallery?.addEventListener('click', () => gradioApp().getElementById(tab_name+"_exporter_button").click());
@@ -43,15 +43,15 @@
 //   return gallery;
 //
 // }
-//
-// function exportData() {
-//   params = gradioApp().querySelector("config_preset_json");
-//   params.
-//
-//   const blob = new Blob([data], {type: 'application/json'});
-//   const url = URL.createObjectURL(blob);
-//   const link = document.createElement('a');
-//   link.download = 'data.json';
-//   link.href = url;
-//   link.click();
-// }
+
+function exportData() {
+    data = gradioApp().getElementById("setting_sd_model_checkpoint").innerText;
+
+
+  const blob = new Blob([data], {type: 'application/json'});
+  const url = URL.createObjectURL(blob);
+  const link = document.createElement('a');
+  link.download = 'data.json';
+  link.href = url;
+  link.click();
+}

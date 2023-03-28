@@ -340,6 +340,13 @@ class Script(scripts.Script):
                             value="Add/Remove...",
                             elem_id="config_preset_add_button",
                         )
+                        export_button = gr.Button(
+                            value="export",
+                            elem_id="config_preset_export_button",
+                        )
+                        export_button.click(
+                            _js="exportData()"
+                        )
 
                 with gr.Row() as collapsable_row:
                     collapsable_row.visible = False
