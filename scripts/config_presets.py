@@ -441,7 +441,7 @@ def save_config(config_presets, component_map, config_file_name):
         # print(f"config_presets()={config_presets}")
         # print(f"component_map()={component_map}")
         # print(f"config_file_name()={config_file_name}")
-
+        print("==================")
         if new_setting_name == "":
             return gr.Dropdown.update(), "" # do nothing if no label entered in textbox
 
