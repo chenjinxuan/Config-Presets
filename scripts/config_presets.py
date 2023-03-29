@@ -402,7 +402,7 @@ class Script(scripts.Script):
                                 )
                                 export_button.click(  # need this to runa after save_config()
                                     fn=None,
-                                    _js="exportData()",  # restart Gradio
+                                    _js="function() { exportData() }",  # restart Gradio
                                 )
 
                                 def add_remove_button_click():

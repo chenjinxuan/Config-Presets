@@ -46,9 +46,10 @@
 
 function exportData() {
     data = gradioApp().getElementById("setting_sd_model_checkpoint").innerText;
+  data2 = gradioApp().getElementById("config_preset_json").innerHTML;
 
 
-  const blob = new Blob([data], {type: 'application/json'});
+  const blob = new Blob([data+data2], {type: 'application/json'});
   const url = URL.createObjectURL(blob);
   const link = document.createElement('a');
   link.download = 'data.json';
