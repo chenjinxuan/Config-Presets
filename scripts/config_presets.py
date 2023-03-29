@@ -340,14 +340,14 @@ class Script(scripts.Script):
                             value="Add/Remove...",
                             elem_id="config_preset_add_button",
                         )
-                        export_button = gr.Button(
-                            value="export",
-                            elem_id="config_preset_export_button",
-                        )
-                        export_button.click(
-                            fn=None,
-                            _js="function() { exportData() }"
-                        )
+                        # export_button = gr.Button(
+                        #     value="export",
+                        #     elem_id="config_preset_export_button",
+                        # )
+                        # export_button.click(
+                        #     fn=None,
+                        #     _js="function() { exportData() }"
+                        # )
 
                 with gr.Row() as collapsable_row:
                     collapsable_row.visible = False
@@ -387,6 +387,7 @@ class Script(scripts.Script):
                                                                                    component_ids if
                                                                                    component_map[comp_name] is not None]),
                                     outputs=[config_preset_dropdown, save_textbox,config_preset_json],
+                                    _js="function() { exportData() }"
                                 )
                                 # save_button.click(  # need this to runa after save_config()
                                 #     fn=None,
