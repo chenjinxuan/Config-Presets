@@ -289,7 +289,7 @@ class Script(scripts.Script):
                         )
 
                         export_button.click(
-                            fn=export_config(config_presets, component_map, config_file_name),
+                            fn=export_config(component_map),
                             inputs=list(
                                 [fields_checkboxgroup] + [component_map[comp_name] for comp_name in
                                                                            component_ids if
@@ -506,10 +506,10 @@ def save_config(config_presets, component_map, config_file_name):
 
 
 # Save the current values on the UI to a new entry in the config file
-def export_config(config_presets, component_map, config_file_name):
+def export_config(component_map):
     print("save_config()")
     # closure keeps path in memory, it's a hack to get around how click or change expects values to be formatted
-    def func(new_setting_name, fields_to_save_list, *new_setting):
+    def func(fields_to_save_list, *new_setting):
         # print(f"save_config() func() new_setting_name={new_setting_name} *new_setting={new_setting}")
         # print(f"config_presets()={config_presets}")
         # print(f"component_map()={component_map}")
