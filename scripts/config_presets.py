@@ -386,12 +386,12 @@ class Script(scripts.Script):
                                         [save_textbox] + [fields_checkboxgroup] + [component_map[comp_name] for comp_name in
                                                                                    component_ids if
                                                                                    component_map[comp_name] is not None]),
-                                    # outputs=[config_preset_dropdown, save_textbox,config_preset_json],
+                                    outputs=[config_preset_dropdown, save_textbox,config_preset_json],
                                 )
-                                save_button.click(  # need this to runa after save_config()
-                                    fn=None,
-                                    _js="config_preset_settings_restart_gradio()",  # restart Gradio
-                                )
+                                # save_button.click(  # need this to runa after save_config()
+                                #     fn=None,
+                                #     _js="config_preset_settings_restart_gradio()",  # restart Gradio
+                                # )
 
                                 def add_remove_button_click():
                                     return gr.update(visible=True), gr.update(visible=True), gr.update(visible=False)
