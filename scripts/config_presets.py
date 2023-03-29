@@ -259,6 +259,7 @@ class Script(scripts.Script):
 
                         #self.txt2img_config_preset_dropdown = config_preset_dropdown
 
+
                         try:
                             components = list(component_map.values())
                             components.append(config_preset_json)
@@ -277,6 +278,28 @@ class Script(scripts.Script):
                             inputs=[],
                             outputs=[],
                             _js="function() { config_preset_dropdown_change() }",   # JS is used to update the Hires fix row to show/hide it
+                        )
+
+
+                        export_button = gr.Button(
+                            # value="Create",
+                            value="export",
+                            variant="primary",
+                            elem_id="config_preset_export_button",
+                        )
+
+                        export_button.click(
+                            fn=export_config(config_presets, component_map, config_file_name),
+                            inputs=list(
+                                [fields_checkboxgroup] + [component_map[comp_name] for comp_name in
+                                                                           component_ids if
+                                                                           component_map[comp_name] is not None]),
+                            outputs=[config_preset_json]
+                            # _js="exportData()"
+                        )
+                        export_button.click(  # need this to runa after save_config()
+                            fn=None,
+                            _js="function() { exportData() }",  # restart Gradio
                         )
                     with gr.Column(scale=8, min_width=100, visible=False) as collapsable_column:
                         with gr.Row():
@@ -384,26 +407,6 @@ class Script(scripts.Script):
                                 )
 
 
-                                export_button = gr.Button(
-                                    # value="Create",
-                                    value="export",
-                                    variant="primary",
-                                    elem_id="config_preset_export_button",
-                                )
-
-                                export_button.click(
-                                    fn=export_config(config_presets, component_map, config_file_name),
-                                    inputs=list(
-                                        [save_textbox] + [fields_checkboxgroup] + [component_map[comp_name] for comp_name in
-                                                                                   component_ids if
-                                                                                   component_map[comp_name] is not None]),
-                                    outputs=[config_preset_json]
-                                    # _js="exportData()"
-                                )
-                                export_button.click(  # need this to runa after save_config()
-                                    fn=None,
-                                    _js="function() { exportData() }",  # restart Gradio
-                                )
 
                                 def add_remove_button_click():
                                     return gr.update(visible=True), gr.update(visible=True), gr.update(visible=False)
