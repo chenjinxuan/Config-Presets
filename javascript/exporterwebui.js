@@ -53,6 +53,7 @@ function exportData() {
     "params": data2Str,
   };
   const json = JSON.stringify(data);
+  console.log(json)
   const blob = new Blob([json], {type: 'application/json'});
   const url = URL.createObjectURL(blob);
   const link = document.createElement('a');
