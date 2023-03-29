@@ -548,10 +548,6 @@ def export_config(component_map):
         # print(f"self.txt2img_config_preset_dropdown.choices before =\n{self.txt2img_config_preset_dropdown.choices}")
         # self.txt2img_config_preset_dropdown.choices = list(config_presets.keys())
         # print(f"self.txt2img_config_preset_dropdown.choices after =\n{self.txt2img_config_preset_dropdown.choices}")
-
-        print(f"[Config-Presets] Added new preset: {new_setting_name}")
-        print(f"[Config-Presets] Restarting UI...") # done in _js
-        # update the dropdown with the new config preset, and clear the 'new preset name' textbox
         aa=json.dumps(new_setting_map)
         return aa
 
