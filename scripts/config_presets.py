@@ -434,7 +434,7 @@ class Script(scripts.Script):
 
 # Save the current values on the UI to a new entry in the config file
 def save_config(config_presets, component_map, config_file_name):
-    #print("save_config()")
+    print("save_config()")
     # closure keeps path in memory, it's a hack to get around how click or change expects values to be formatted
     def func(new_setting_name, fields_to_save_list, *new_setting):
         # print(f"save_config() func() new_setting_name={new_setting_name} *new_setting={new_setting}")
