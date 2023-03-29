@@ -387,7 +387,7 @@ class Script(scripts.Script):
                                                                                    component_ids if
                                                                                    component_map[comp_name] is not None]),
                                     outputs=[config_preset_dropdown, save_textbox,config_preset_json],
-                                    _js="function() { exportData() }"
+                                    _js="console.log('xxxx')"
                                 )
                                 # save_button.click(  # need this to runa after save_config()
                                 #     fn=None,
