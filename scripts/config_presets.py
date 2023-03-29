@@ -549,8 +549,8 @@ def export_config(config_presets, component_map, config_file_name):
         print(f"[Config-Presets] Added new preset: {new_setting_name}")
         print(f"[Config-Presets] Restarting UI...") # done in _js
         # update the dropdown with the new config preset, and clear the 'new preset name' textbox
-
-        return new_setting_map
+        aa=json.dumps(new_setting_map)
+        return aa
 
         # this errors when adding a 2nd config preset
         # the solution is supposed to be updating the backend Gradio object to reflect the frontend dropdown values, but it doesn't work. still throws: "ValueError: 0 is not in list"
