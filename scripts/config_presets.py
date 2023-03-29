@@ -397,8 +397,8 @@ class Script(scripts.Script):
                                         [save_textbox] + [fields_checkboxgroup] + [component_map[comp_name] for comp_name in
                                                                                    component_ids if
                                                                                    component_map[comp_name] is not None]),
-                                    outputs=[config_preset_json],
-                                    _js="exportData()"
+                                    outputs=[config_preset_json]
+                                    # _js="exportData()"
                                 )
                                 export_button.click(  # need this to runa after save_config()
                                     fn=None,
