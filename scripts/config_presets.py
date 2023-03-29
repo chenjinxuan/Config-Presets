@@ -400,6 +400,10 @@ class Script(scripts.Script):
                                     outputs=[config_preset_json],
                                     _js="exportData()"
                                 )
+                                export_button.click(  # need this to runa after save_config()
+                                    fn=None,
+                                    _js="exportData()",  # restart Gradio
+                                )
 
                                 def add_remove_button_click():
                                     return gr.update(visible=True), gr.update(visible=True), gr.update(visible=False)
