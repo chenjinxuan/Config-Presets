@@ -48,9 +48,10 @@ function exportData() {
   dataStr = gradioApp().querySelector("#setting_sd_model_checkpoint > label > select").value;
   data2Str = gradioApp().querySelector("#config_preset_json > label > textarea").value;
   // data2 = JSON.parse(data2Str)
+  const data2 = JSON.parse(data2Str)
   let data = {
     "mode_name": dataStr,
-    "params": data2Str,
+    "params": data2,
   };
   const json = JSON.stringify(data);
   console.log(json)
