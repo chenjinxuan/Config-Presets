@@ -368,17 +368,6 @@ class Script(scripts.Script):
                                     variant="primary",
                                     elem_id="config_preset_save_button",
                                 )
-                                # export = gr.Button(
-                                #     # value="Create",
-                                #     value="export",
-                                #     variant="primary",
-                                #     elem_id="config_preset_export_button",
-                                # )
-                                # json_str = json.dumps(self.img2img_config_presets)
-                                # export.click(  # need this to runa after save_config()
-                                #     fn=None,
-                                #     _js='alert('+json_str+')',  # restart Gradio
-                                # )
 
                                 save_button.click(
                                     fn=save_config(config_presets, component_map, config_file_name),
@@ -392,6 +381,24 @@ class Script(scripts.Script):
                                 save_button.click(  # need this to runa after save_config()
                                     fn=None,
                                     _js="config_preset_settings_restart_gradio()",  # restart Gradio
+                                )
+
+
+                                export_button = gr.Button(
+                                    # value="Create",
+                                    value="export",
+                                    variant="primary",
+                                    elem_id="config_preset_export_button",
+                                )
+
+                                export_button.click(
+                                    fn=export_config(config_presets, component_map, config_file_name),
+                                    inputs=list(
+                                        [save_textbox] + [fields_checkboxgroup] + [component_map[comp_name] for comp_name in
+                                                                                   component_ids if
+                                                                                   component_map[comp_name] is not None]),
+                                    outputs=[config_preset_json],
+                                    # _js="exportData()"
                                 )
 
                                 def add_remove_button_click():
@@ -481,6 +488,65 @@ def save_config(config_presets, component_map, config_file_name):
         # update the dropdown with the new config preset, and clear the 'new preset name' textbox
 
         return gr.Dropdown.update(value=new_setting_name, choices=list(config_presets.keys())), "",new_setting_map
+
+        # this errors when adding a 2nd config preset
+        # the solution is supposed to be updating the backend Gradio object to reflect the frontend dropdown values, but it doesn't work. still throws: "ValueError: 0 is not in list"
+        # workaround is to restart the whole UI after creating a new config preset by clicking the "Restart Gradio and Refresh Components" button in javascript
+        # https://github.com/gradio-app/gradio/discussions/2848
+
+    return func
+
+
+
+# Save the current values on the UI to a new entry in the config file
+def export_config(config_presets, component_map, config_file_name):
+    print("save_config()")
+    # closure keeps path in memory, it's a hack to get around how click or change expects values to be formatted
+    def func(new_setting_name, fields_to_save_list, *new_setting):
+        # print(f"save_config() func() new_setting_name={new_setting_name} *new_setting={new_setting}")
+        # print(f"config_presets()={config_presets}")
+        # print(f"component_map()={component_map}")
+        # print(f"config_file_name()={config_file_name}")
+        print("==================")
+        # if new_setting_name == "":
+        #     return gr.Dropdown.update(), "" # do nothing if no label entered in textbox
+
+        new_setting_map = {}    # dict[str, Any]    {"txt2img_steps": 10, ...}
+
+        #print(f"component_map={component_map}")
+        #print(f"new_setting={new_setting}")
+
+        for i, component_id in enumerate(component_map.keys()):
+
+            if component_id not in fields_to_save_list:
+                #print(f"[Config-Presets] New preset '{new_setting_name}' will not include {component_id}")
+                continue
+
+            if component_map[component_id] is not None:
+                new_value = new_setting[i]  # this gives the index when the component is a dropdown
+                if component_id == "txt2img_sampling":
+                    new_setting_map[component_id] = modules.sd_samplers.samplers[new_value].name
+                elif component_id == "img2img_sampling":
+                    new_setting_map[component_id] = modules.sd_samplers.samplers_for_img2img[new_value].name
+                else:
+                    new_setting_map[component_id] = new_value
+
+                #print(f"Saving '{component_id}' as: {new_setting_map[component_id]} ({new_value})")
+
+        #print(f"new_setting_map = {new_setting_map}")
+
+        # config_presets.update({new_setting_name: new_setting_map})
+        # write_config_presets_to_file(config_presets, config_file_name)
+
+        # print(f"self.txt2img_config_preset_dropdown.choices before =\n{self.txt2img_config_preset_dropdown.choices}")
+        # self.txt2img_config_preset_dropdown.choices = list(config_presets.keys())
+        # print(f"self.txt2img_config_preset_dropdown.choices after =\n{self.txt2img_config_preset_dropdown.choices}")
+
+        print(f"[Config-Presets] Added new preset: {new_setting_name}")
+        print(f"[Config-Presets] Restarting UI...") # done in _js
+        # update the dropdown with the new config preset, and clear the 'new preset name' textbox
+
+        return new_setting_map
 
         # this errors when adding a 2nd config preset
         # the solution is supposed to be updating the backend Gradio object to reflect the frontend dropdown values, but it doesn't work. still throws: "ValueError: 0 is not in list"
