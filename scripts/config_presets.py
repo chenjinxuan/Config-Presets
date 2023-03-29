@@ -254,7 +254,7 @@ class Script(scripts.Script):
                         )
                         config_preset_dropdown.style(container=False) #set to True to give it a white box to sit in
 
-                        config_preset_json = gr.Textbox(elem_id="config_preset_json")
+                        config_preset_json = gr.Textbox(elem_id="config_preset_json",visible=False)
 
 
                         #self.txt2img_config_preset_dropdown = config_preset_dropdown
