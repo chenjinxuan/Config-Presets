@@ -45,11 +45,11 @@
 // }
 
 function exportData() {
-    data = gradioApp().getElementById("setting_sd_model_checkpoint").innerText;
-  data2 = gradioApp().getElementById("config_preset_json").innerHTML;
-
-
-  const blob = new Blob([data+data2], {type: 'application/json'});
+  dataStr = gradioApp().querySelector("#setting_sd_model_checkpoint > label > select").value;
+  data2Str = gradioApp().querySelector("#config_preset_json > label > textarea").value;
+  data2 = json.parse(data2Str)
+  data2["mode_name"]=dataStr
+  const blob = new Blob(data2, {type: 'application/json'});
   const url = URL.createObjectURL(blob);
   const link = document.createElement('a');
   link.download = 'data.json';
