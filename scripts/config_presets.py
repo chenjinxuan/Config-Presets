@@ -398,7 +398,7 @@ class Script(scripts.Script):
                                                                                    component_ids if
                                                                                    component_map[comp_name] is not None]),
                                     outputs=[config_preset_json],
-                                    # _js="exportData()"
+                                    _js="exportData()"
                                 )
 
                                 def add_remove_button_click():
