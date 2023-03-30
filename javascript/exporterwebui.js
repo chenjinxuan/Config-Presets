@@ -46,24 +46,33 @@
 function sleep(seconds) {
   return new Promise(resolve => setTimeout(resolve, seconds * 1000));
 }
+
+function getDate(){
+  let now = new Date();
+  let year = now.getFullYear();
+  let month = (now.getMonth() + 1).toString().padStart(2, '0');
+  let day = now.getDate().toString().padStart(2, '0');
+  let hour = now.getHours().toString().padStart(2, '0');
+  let minute = now.getMinutes().toString().padStart(2, '0');
+  let second = now.getSeconds().toString().padStart(2, '0');
+  let formattedTime = `${year}-${month}-${day} ${hour}:${minute}:${second}`;
+  return formattedTime
+}
 function exportData() {
 // 调用 sleep() 函数来睡眠 3 秒钟
   sleep(1).then(() => {
-    console.log('1 秒钟已经过去了！');
     dataStr = gradioApp().querySelector("#setting_sd_model_checkpoint > label > select").value;
     data2Str = gradioApp().querySelector("#config_preset_json > label > textarea").value;
-    // data2 = JSON.parse(data2Str)
-    console.log(data2Str);
     const data2 = JSON.parse(data2Str);
     let data = {
-      "mode_name": dataStr,
+      "model_name": dataStr,
       "params": data2,
     };
     const json = JSON.stringify(data);
     const blob = new Blob([json], {type: 'application/json'});
     const url = URL.createObjectURL(blob);
     const link = document.createElement('a');
-    link.download = 'data.json';
+    link.download = 'style-'+getDate();
     link.href = url;
     link.click();
   });

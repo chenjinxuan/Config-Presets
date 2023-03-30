@@ -39,22 +39,22 @@ class Script(scripts.Script):
             "txt2img_hires_steps",
             "txt2img_denoising_strength",
             "txt2img_cfg_scale",
-            "ctl_enabled",
-            "ctl_scribble_mode",
-            "ctl_rgbbgr_mode",
-            "ctl_lowvram",
-            "ctl_guess_mode",
-            "ctl_module",
-            "ctl_model",
-            "ctl_weight",
-            "ctl_guidance_start",
-            "ctl_guidance_end",
-            "ctl_processor_res",
-            "ctl_threshold_a",
-            "ctl_threshold_b",
-            "ctl_resize_mode",
-            "ctl_canvas_width",
-            "ctl_canvas_height",
+            "ext_ctl_enabled",
+            "ext_ctl_scribble_mode",
+            "ext_ctl_rgbbgr_mode",
+            "ext_ctl_lowvram",
+            "ext_ctl_guess_mode",
+            "ext_ctl_module",
+            "ext_ctl_model",
+            "ext_ctl_weight",
+            "ext_ctl_guidance_start",
+            "ext_ctl_guidance_end",
+            "ext_ctl_processor_res",
+            "ext_ctl_threshold_a",
+            "ext_ctl_threshold_b",
+            "ext_ctl_resize_mode",
+            "ext_ctl_canvas_width",
+            "ext_ctl_canvas_height",
 
            # "component-1285",
         ]
@@ -68,22 +68,22 @@ class Script(scripts.Script):
             "img2img_cfg_scale",
             "img2img_denoising_strength",
             "img2img_restore_faces",
-            "ctl_enabled",
-            "ctl_scribble_mode",
-            "ctl_rgbbgr_mode",
-            "ctl_lowvram",
-            "ctl_guess_mode",
-            "ctl_module",
-            "ctl_model",
-            "ctl_weight",
-            "ctl_guidance_start",
-            "ctl_guidance_end",
-            "ctl_processor_res",
-            "ctl_threshold_a",
-            "ctl_threshold_b",
-            "ctl_resize_mode",
-            "ctl_canvas_width",
-            "ctl_canvas_height",
+            "ext_ctl_enabled",
+            "ext_ctl_scribble_mode",
+            "ext_ctl_rgbbgr_mode",
+            "ext_ctl_lowvram",
+            "ext_ctl_guess_mode",
+            "ext_ctl_module",
+            "ext_ctl_model",
+            "ext_ctl_weight",
+            "ext_ctl_guidance_start",
+            "ext_ctl_guidance_end",
+            "ext_ctl_processor_res",
+            "ext_ctl_threshold_a",
+            "ext_ctl_threshold_b",
+            "ext_ctl_resize_mode",
+            "ext_ctl_canvas_width",
+            "ext_ctl_canvas_height",
         ]
 
 
@@ -107,19 +107,7 @@ class Script(scripts.Script):
         except FileNotFoundError:
             # txt2img config file not found
             # First time running the extension or it was deleted, so fill it with default values
-            self.txt2img_config_presets = {
-                #"Default": {},
-                "Low quality ------ 512x512, steps: 10, batch size: 4, DPM++ 2M Karras": {
-                    "txt2img_sampling": "DPM++ 2M Karras",
-                    "txt2img_steps": 10,
-                    "txt2img_width": 512,
-                    "txt2img_height": 512,
-                    "txt2img_enable_hr": False,
-                    "txt2img_batch_count": 1,
-                    "txt2img_batch_size": 4,
-                    #"txt2img_cfg_scale": 7,
-                }
-            }
+            self.txt2img_config_presets = {}
 
             write_config_presets_to_file(self.txt2img_config_presets, CONFIG_TXT2IMG_FILE_NAME)
             print(f"[Config Presets] txt2img config file not found, created default config at {BASEDIR}/{CONFIG_TXT2IMG_FILE_NAME}")
@@ -132,20 +120,7 @@ class Script(scripts.Script):
         except FileNotFoundError:
             # img2img config file not found
             # First time running the extension or it was deleted, so fill it with default values
-            self.img2img_config_presets = {
-                #"Default": {},
-                "Low denoising ------- 512x512, denoising: 0.25, steps: 10, DPM++ 2M Karras": {
-                    "img2img_sampling": "DPM++ 2M Karras",
-                    "img2img_steps": 10,
-                    "img2img_width": 512,
-                    "img2img_height": 512,
-                    #"img2img_batch_count": 1,
-                    #"img2img_batch_size": 1,
-                    #"img2img_cfg_scale": 7,
-                    "img2img_denoising_strength": 0.25,
-                },
-
-            }
+            self.img2img_config_presets = {}
 
             write_config_presets_to_file(self.img2img_config_presets, CONFIG_IMG2IMG_FILE_NAME)
             print(f"[Config Presets] img2img config file not found, created default config at {BASEDIR}/{CONFIG_IMG2IMG_FILE_NAME}")
@@ -241,11 +216,9 @@ class Script(scripts.Script):
                                 if component_name in index_type_components and type(component_value) == int:
                                     current_components[component_name] = comxponent_map[component_name].choices[component_value]
 
-                            #print("Components after :", current_components)
-                            x = list(current_components.values())
-                            x.append(config_preset)
 
-                            return x
+
+                            return list(current_components.values())
 
                         config_preset_dropdown = gr.Dropdown(
                             label="Config Presets",
@@ -262,7 +235,6 @@ class Script(scripts.Script):
 
                         try:
                             components = list(component_map.values())
-                            components.append(config_preset_json)
                             config_preset_dropdown.change(
                                 fn=config_preset_dropdown_change,
                                 show_progress=False,
@@ -448,14 +420,8 @@ class Script(scripts.Script):
 
 # Save the current values on the UI to a new entry in the config file
 def save_config(config_presets, component_map, config_file_name):
-    print("save_config()")
     # closure keeps path in memory, it's a hack to get around how click or change expects values to be formatted
     def func(new_setting_name, fields_to_save_list, *new_setting):
-        # print(f"save_config() func() new_setting_name={new_setting_name} *new_setting={new_setting}")
-        # print(f"config_presets()={config_presets}")
-        # print(f"component_map()={component_map}")
-        # print(f"config_file_name()={config_file_name}")
-        print("==================")
         if new_setting_name == "":
             return gr.Dropdown.update(), "" # do nothing if no label entered in textbox
 
@@ -507,21 +473,11 @@ def save_config(config_presets, component_map, config_file_name):
 
 # Save the current values on the UI to a new entry in the config file
 def export_config(component_map):
-    print("save_config()")
     # closure keeps path in memory, it's a hack to get around how click or change expects values to be formatted
     def func(fields_to_save_list, *new_setting):
-        # print(f"save_config() func() new_setting_name={new_setting_name} *new_setting={new_setting}")
-        # print(f"config_presets()={config_presets}")
-        # print(f"component_map()={component_map}")
-        # print(f"config_file_name()={config_file_name}")
-        print("==================")
-        # if new_setting_name == "":
-        #     return gr.Dropdown.update(), "" # do nothing if no label entered in textbox
+
 
         new_setting_map = {}    # dict[str, Any]    {"txt2img_steps": 10, ...}
-
-        #print(f"component_map={component_map}")
-        #print(f"new_setting={new_setting}")
 
         for i, component_id in enumerate(component_map.keys()):
 
@@ -537,25 +493,8 @@ def export_config(component_map):
                     new_setting_map[component_id] = modules.sd_samplers.samplers_for_img2img[new_value].name
                 else:
                     new_setting_map[component_id] = new_value
-
-                #print(f"Saving '{component_id}' as: {new_setting_map[component_id]} ({new_value})")
-
-        #print(f"new_setting_map = {new_setting_map}")
-
-        # config_presets.update({new_setting_name: new_setting_map})
-        # write_config_presets_to_file(config_presets, config_file_name)
-
-        # print(f"self.txt2img_config_preset_dropdown.choices before =\n{self.txt2img_config_preset_dropdown.choices}")
-        # self.txt2img_config_preset_dropdown.choices = list(config_presets.keys())
-        # print(f"self.txt2img_config_preset_dropdown.choices after =\n{self.txt2img_config_preset_dropdown.choices}")
         aa=json.dumps(new_setting_map)
         return aa
-
-        # this errors when adding a 2nd config preset
-        # the solution is supposed to be updating the backend Gradio object to reflect the frontend dropdown values, but it doesn't work. still throws: "ValueError: 0 is not in list"
-        # workaround is to restart the whole UI after creating a new config preset by clicking the "Restart Gradio and Refresh Components" button in javascript
-        # https://github.com/gradio-app/gradio/discussions/2848
-
     return func
 
 
