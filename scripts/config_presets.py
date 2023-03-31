@@ -254,7 +254,6 @@ class Script(scripts.Script):
 
 
                         export_button = gr.Button(
-                            # value="Create",
                             value="export",
                             variant="primary",
                             elem_id="config_preset_export_button",
@@ -480,7 +479,7 @@ def export_config(component_map):
         new_setting_map = {}    # dict[str, Any]    {"txt2img_steps": 10, ...}
 
         for i, component_id in enumerate(component_map.keys()):
-
+            print(component_id)
             if component_id not in fields_to_save_list:
                 #print(f"[Config-Presets] New preset '{new_setting_name}' will not include {component_id}")
                 continue
