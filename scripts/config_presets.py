@@ -59,7 +59,10 @@ class Script(scripts.Script):
            # "component-1285",
         ]
         self.img2img_component_ids = [   # mirrors the config_preset_dropdown.change(output) events and config_preset_dropdown_change()
+            "img2img_prompt"
+            "img2img_neg_prompt"
             "img2img_sampling",
+            "resize_mode"
             "img2img_steps",
             "img2img_width",
             "img2img_height",
@@ -180,8 +183,6 @@ class Script(scripts.Script):
 
             preset_values = []
             config_presets = None
-            print("========")
-            print(self.is_txt2img)
             if self.is_txt2img:
                 config_presets = self.txt2img_config_presets
             else:
@@ -230,7 +231,7 @@ class Script(scripts.Script):
                         )
                         config_preset_dropdown.style(container=False) #set to True to give it a white box to sit in
 
-                        config_preset_json = gr.Textbox(elem_id="config_preset_json",visible=False)
+                        config_preset_json = gr.Textbox(elem_id="config_preset_json"if self.is_txt2img else "config_preset_img2img_json" ,visible=False)
 
 
                         #self.txt2img_config_preset_dropdown = config_preset_dropdown
@@ -259,7 +260,7 @@ class Script(scripts.Script):
                         export_button = gr.Button(
                             value="export",
                             variant="primary",
-                            elem_id="config_preset_export_button",
+                            elem_id="config_preset_export_button" if self.is_txt2img else "config_preset_export_img2img_dropdown",
                         )
 
                         export_button.click(
@@ -271,9 +272,10 @@ class Script(scripts.Script):
                             outputs=[config_preset_json]
                             # _js="exportData()"
                         )
+                        js="function() { exportData() }"  if self.is_txt2img else "function() { exportImg2ImgData() }"
                         export_button.click(  # need this to runa after save_config()
                             fn=None,
-                            _js="function() { exportData() }",  # restart Gradio
+                            _js=js,  # restart Gradio
                         )
                     with gr.Column(scale=8, min_width=100, visible=False) as collapsable_column:
                         with gr.Row():
