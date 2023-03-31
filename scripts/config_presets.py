@@ -59,10 +59,10 @@ class Script(scripts.Script):
            # "component-1285",
         ]
         self.img2img_component_ids = [   # mirrors the config_preset_dropdown.change(output) events and config_preset_dropdown_change()
-            "img2img_prompt"
-            "img2img_neg_prompt"
+            "img2img_prompt",
+            "img2img_neg_prompt",
             "img2img_sampling",
-            "resize_mode"
+            "resize_mode",
             "img2img_steps",
             "img2img_width",
             "img2img_height",
