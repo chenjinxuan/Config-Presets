@@ -496,7 +496,7 @@ def export_config(component_map):
                 elif component_id == "img2img_sampling":
                     new_setting_map[component_id] = modules.sd_samplers.samplers_for_img2img[new_value].name
                 else:
-                    if type(new_value) == "ndarray":
+                    if type(new_value) == "<class 'ndarray'>":
                         new_value = new_value.tolist()
                     new_setting_map[component_id] = new_value
 
