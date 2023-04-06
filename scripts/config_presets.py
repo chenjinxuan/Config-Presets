@@ -2,6 +2,7 @@ import traceback
 import modules.sd_samplers
 import modules.scripts as scripts
 import gradio as gr
+import numpy as np
 import json
 import os
 import platform
@@ -497,7 +498,7 @@ def export_config(component_map):
                     new_setting_map[component_id] = modules.sd_samplers.samplers_for_img2img[new_value].name
                 else:
                     if component_id == "ext_ctl_image":
-                        new_value = new_value.tolist()
+                        ndarray_to_list(new_value)
                     new_setting_map[component_id] = new_value
 
         aa=json.dumps(new_setting_map)
@@ -509,3 +510,14 @@ def write_config_presets_to_file(config_presets, config_file_name: str):
     json_object = json.dumps(config_presets, indent=4)
     with open(f"{BASEDIR}/{config_file_name}", "w") as outfile:
         outfile.write(json_object)
+
+
+
+def ndarray_to_list(d):
+    for k, v in d.items():
+        if isinstance(v, dict):
+            ndarray_to_list(v)
+        elif isinstance(v, np.ndarray):
+            d[k] = v.tolist()
+        else:
+            pass  # do nothing
