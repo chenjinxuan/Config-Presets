@@ -39,6 +39,7 @@ class Script(scripts.Script):
             "txt2img_hires_steps",
             "txt2img_denoising_strength",
             "txt2img_cfg_scale",
+            "txt2img_gallery",
             "ext_ctl_enabled",
             "ext_ctl_scribble_mode",
             "ext_ctl_rgbbgr_mode",
@@ -55,7 +56,7 @@ class Script(scripts.Script):
             "ext_ctl_resize_mode",
             "ext_ctl_canvas_width",
             "ext_ctl_canvas_height",
-
+            "ext_ctl_image",
            # "component-1285",
         ]
         self.img2img_component_ids = [   # mirrors the config_preset_dropdown.change(output) events and config_preset_dropdown_change()
@@ -87,6 +88,7 @@ class Script(scripts.Script):
             "ext_ctl_resize_mode",
             "ext_ctl_canvas_width",
             "ext_ctl_canvas_height",
+            "ext_ctl_image",
         ]
 
 
