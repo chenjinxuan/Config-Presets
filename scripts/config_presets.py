@@ -498,8 +498,9 @@ def export_config(component_map):
                 elif component_id == "img2img_sampling":
                     new_setting_map[component_id] = modules.sd_samplers.samplers_for_img2img[new_value].name
                 else:
-                    if component_id == "ext_ctl_image":
-                        new_value = new_value.tolist()
+                    # if component_id == "ext_ctl_image":
+                    #     new_value = new_value.tolist()
+                    print(type(new_value))
                     new_setting_map[component_id] = new_value
 
         aa=json.dumps(new_setting_map)
