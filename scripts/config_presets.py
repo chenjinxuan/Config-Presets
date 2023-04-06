@@ -486,9 +486,7 @@ def export_config(component_map):
 
 
         new_setting_map = {}    # dict[str, Any]    {"txt2img_steps": 10, ...}
-        print(component_map.keys())
         for i, component_id in enumerate(component_map.keys()):
-            print(component_id)
             if component_id not in fields_to_save_list:
                 #print(f"[Config-Presets] New preset '{new_setting_name}' will not include {component_id}")
                 continue
@@ -500,9 +498,11 @@ def export_config(component_map):
                 elif component_id == "img2img_sampling":
                     new_setting_map[component_id] = modules.sd_samplers.samplers_for_img2img[new_value].name
                 else:
+                    if component_id == "txt2img_gallery":
+                        new_value = new_value.tolist()
                     new_setting_map[component_id] = new_value
 
-        aa=json.dumps(new_setting_map.tolist())
+        aa=json.dumps(new_setting_map)
         return aa
     return func
 
