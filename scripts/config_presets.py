@@ -501,7 +501,8 @@ def export_config(component_map):
                     new_setting_map[component_id] = modules.sd_samplers.samplers_for_img2img[new_value].name
                 else:
                     new_setting_map[component_id] = new_value
-        aa=json.dumps(new_setting_map)
+
+        aa=json.dumps(new_setting_map.tolist())
         return aa
     return func
 
