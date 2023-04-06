@@ -479,8 +479,6 @@ def save_config(config_presets, component_map, config_file_name):
 
 # Save the current values on the UI to a new entry in the config file
 def export_config(component_map):
-    print(component_map.keys())
-    print("11111111")
     # closure keeps path in memory, it's a hack to get around how click or change expects values to be formatted
     def func(fields_to_save_list, *new_setting):
 
@@ -498,9 +496,8 @@ def export_config(component_map):
                 elif component_id == "img2img_sampling":
                     new_setting_map[component_id] = modules.sd_samplers.samplers_for_img2img[new_value].name
                 else:
-                    # if component_id == "ext_ctl_image":
-                    #     new_value = new_value.tolist()
-                    print(type(new_value))
+                    if type(new_value) == "ndarray":
+                        new_value = new_value.tolist()
                     new_setting_map[component_id] = new_value
 
         aa=json.dumps(new_setting_map)
