@@ -57,7 +57,7 @@ class Script(scripts.Script):
             "ext_ctl_resize_mode",
             "ext_ctl_canvas_width",
             "ext_ctl_canvas_height",
-            "ext_ctl_image",
+            # "ext_ctl_image",
            # "component-1285",
         ]
         self.img2img_component_ids = [   # mirrors the config_preset_dropdown.change(output) events and config_preset_dropdown_change()
@@ -89,7 +89,7 @@ class Script(scripts.Script):
             "ext_ctl_resize_mode",
             "ext_ctl_canvas_width",
             "ext_ctl_canvas_height",
-            "ext_ctl_image",
+            # "ext_ctl_image",
         ]
 
 
@@ -497,8 +497,8 @@ def export_config(component_map):
                 elif component_id == "img2img_sampling":
                     new_setting_map[component_id] = modules.sd_samplers.samplers_for_img2img[new_value].name
                 else:
-                    if component_id == "ext_ctl_image":
-                        ndarray_to_list(new_value)
+                    # if component_id == "ext_ctl_image":
+                    #     ndarray_to_list(new_value)
                     new_setting_map[component_id] = new_value
 
         aa=json.dumps(new_setting_map)
