@@ -504,7 +504,8 @@ def export_config(component_map):
                         ext[component_id] = new_value
                     else:
                         new_setting_map[component_id] = new_value
-
+        new_setting_map["ext"]=[]
+        new_setting_map["ext"].append(ext)
         aa=json.dumps(new_setting_map)
         return aa
     return func
