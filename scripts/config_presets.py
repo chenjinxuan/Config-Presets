@@ -165,6 +165,8 @@ class Script(scripts.Script):
         #if component.label in self.component_map:
         if component.elem_id in component_map:
             component_map[component.elem_id] = component
+        if component.elem_id is not None and component.elem_id.startswith("ControlNet-"):
+            component_map[component.elem_id] = component
             #print(f"[Config-Presets][DEBUG]: found component: {component.elem_id} {component}")
 
         #if component.elem_id == "script_list": #bottom of the script dropdown
@@ -489,7 +491,7 @@ def export_config(component_map):
 
 
         new_setting_map = {}    # dict[str, Any]    {"txt2img_steps": 10, ...}
-        ext = {}
+        ctl = {}
         for i, component_id in enumerate(component_map.keys()):
             if component_id not in fields_to_save_list:
                 #print(f"[Config-Presets] New preset '{new_setting_name}' will not include {component_id}")
@@ -504,12 +506,12 @@ def export_config(component_map):
                 else:
                     # if component_id == "ext_ctl_image":
                     #     ndarray_to_list(new_value)
-                    if component_id.startswith("ext_ctl"):
-                        ext[component_id] = new_value
+                    if component_id.startswith("ControlNet-"):
+                        ctl[component_id] = new_value
                     else:
                         new_setting_map[component_id] = new_value
-        new_setting_map["ext"]=[]
-        new_setting_map["ext"].append(ext)
+        new_setting_map["ext"] = []
+        new_setting_map["ext"].append(ctl)
         aa=json.dumps(new_setting_map)
         return aa
     return func
