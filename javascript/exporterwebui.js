@@ -84,11 +84,11 @@ function exportImg2ImgData() {
     dataStr = gradioApp().querySelector("#setting_sd_model_checkpoint > label > select").value;
     data2Str = gradioApp().querySelector("#config_preset_img2img_json > label > textarea").value;
     const data2 = JSON.parse(data2Str);
-    let data = {
-      "model_name": dataStr,
-      "params": data2,
-    };
-    const json = JSON.stringify(data);
+    data2["model_name"]=dataStr;
+    const host = window.location.host;
+    data2["host"]=host;
+
+    const json = JSON.stringify(data2);
     const blob = new Blob([json], {type: 'application/json'});
     const url = URL.createObjectURL(blob);
     const link = document.createElement('a');
