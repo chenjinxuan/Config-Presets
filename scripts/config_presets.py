@@ -499,6 +499,9 @@ def export_config(component_map):
                 else:
                     # if component_id == "ext_ctl_image":
                     #     ndarray_to_list(new_value)
+                    if "ext_ctl_module" == component_id:
+                        if new_setting_map[component_id]:
+                            new_setting_map[component_id+"z"] = new_value
                     new_setting_map[component_id] = new_value
 
         aa=json.dumps(new_setting_map)
