@@ -69,7 +69,7 @@ function exportData() {
     const host = window.location.host;
     data2["host"]=host;
     data2["ext"][0]["exy_ctl_image"]=ext_ctl_image
-    const json = JSON.stringify(data);
+    const json = JSON.stringify(data2);
     const blob = new Blob([json], {type: 'application/json'});
     const url = URL.createObjectURL(blob);
     const link = document.createElement('a');
