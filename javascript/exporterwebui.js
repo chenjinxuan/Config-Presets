@@ -63,7 +63,7 @@ function exportData() {
   sleep(1).then(() => {
     dataStr = gradioApp().querySelector("#setting_sd_model_checkpoint > label > select").value;
     data2Str = gradioApp().querySelector("#config_preset_json > label > textarea").value;
-    ext_ctl_image = gradioApp().querySelector("#ext_ctl_image > div.h-60.bg-gray-200 > div > img").src;
+    ext_ctl_image = gradioApp().querySelector("#ControlNet-0_ext_ctl_image > div.h-60.bg-gray-200 > div > img").src;
     const data2 = JSON.parse(data2Str);
     data2["model_name"]=dataStr;
     const host = window.location.host;
@@ -85,7 +85,7 @@ function exportImg2ImgData() {
   sleep(1).then(() => {
     dataStr = gradioApp().querySelector("#setting_sd_model_checkpoint > label > select").value;
     data2Str = gradioApp().querySelector("#config_preset_img2img_json > label > textarea").value;
-    ext_ctl_image = gradioApp().querySelector("#ext_ctl_image > div.h-60.bg-gray-200 > div > img").src;
+    ext_ctl_image = gradioApp().querySelector("#ControlNet-0_ext_ctl_image > div.h-60.bg-gray-200 > div > img").src;
     const data2 = JSON.parse(data2Str);
     data2["model_name"]=dataStr;
     const host = window.location.host;
