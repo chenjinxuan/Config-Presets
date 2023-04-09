@@ -494,9 +494,9 @@ def export_config(component_map):
         new_setting_map = {}    # dict[str, Any]    {"txt2img_steps": 10, ...}
         ctl = {}
         for i, component_id in enumerate(component_map.keys()):
-            if component_id not in fields_to_save_list:
-                #print(f"[Config-Presets] New preset '{new_setting_name}' will not include {component_id}")
-                continue
+            # if component_id not in fields_to_save_list:
+            #     #print(f"[Config-Presets] New preset '{new_setting_name}' will not include {component_id}")
+            #     continue
 
             if component_map[component_id] is not None:
                 new_value = new_setting[i]  # this gives the index when the component is a dropdown
