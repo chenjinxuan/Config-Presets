@@ -486,6 +486,7 @@ def save_config(config_presets, component_map, config_file_name):
 
 # Save the current values on the UI to a new entry in the config file
 def export_config(component_map):
+    print(component_map.keys())
     # closure keeps path in memory, it's a hack to get around how click or change expects values to be formatted
     def func(fields_to_save_list, *new_setting):
 
