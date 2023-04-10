@@ -518,6 +518,7 @@ def export_config(component_map):
                         # ctl[component_id] = new_value
                     elif component_id.startswith("ext_an_"):
                         if component_id =="ext_an_mask_image":
+                            an[component_id] = ndarray_to_list(new_value)
                             continue
                         an[component_id]=new_value
                     else:
