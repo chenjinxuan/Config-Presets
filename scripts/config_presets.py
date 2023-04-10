@@ -3,6 +3,7 @@ import modules.sd_samplers
 import modules.scripts as scripts
 import gradio as gr
 import numpy as np
+import base64
 import json
 import os
 import platform
@@ -518,7 +519,8 @@ def export_config(component_map):
                         # ctl[component_id] = new_value
                     elif component_id.startswith("ext_an_"):
                         if component_id =="ext_an_mask_image":
-                            an[component_id] = ndarray_to_list(new_value)
+                            img_base64 = base64.b64encode(new_value).decode()
+                            an[component_id] = img_base64
                             continue
                         an[component_id]=new_value
                     else:
