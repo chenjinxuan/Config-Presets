@@ -520,7 +520,7 @@ def export_config(component_map):
                     elif component_id.startswith("txt2img_ext_an_") or component_id.startswith("img2img_ext_an_") :
                         if component_id.endswith("ext_an_mask_image"):
                             continue
-                        an[component_id]=new_value
+                        an[component_id[8:]]=new_value
                     else:
                         new_setting_map[component_id] = new_value
         ext_arr = [None] * len(ctls)
