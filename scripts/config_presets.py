@@ -146,10 +146,6 @@ class Script(scripts.Script):
         # so we can use the same code for both tabs
         if not getattr(component, 'elem_id', None):
             component.elem_id = component.label
-
-        print(component.elem_id)
-        print(component.label)
-        print("========")
         component_map = None
         component_ids = None
         config_file_name = None
@@ -166,6 +162,9 @@ class Script(scripts.Script):
         if component.elem_id in component_map:
             component_map[component.elem_id] = component
         if component.elem_id is not None and component.elem_id.startswith("ControlNet-"):
+            component_map[component.elem_id] = component
+            component_ids.append(component.elem_id)
+        if component.elem_id is not None and component.elem_id.startswith("ext_an_"):
             component_map[component.elem_id] = component
             component_ids.append(component.elem_id)
             #print(f"[Config-Presets][DEBUG]: found component: {component.elem_id} {component}")
@@ -241,7 +240,7 @@ class Script(scripts.Script):
                         )
                         config_preset_dropdown.style(container=False) #set to True to give it a white box to sit in
 
-                        config_preset_json = gr.Textbox(elem_id="config_preset_json"if self.is_txt2img else "config_preset_img2img_json" ,visible=False)
+                        config_preset_json = gr.Textbox(elem_id="config_preset_json" if self.is_txt2img else "config_preset_img2img_json" ,visible=False)
 
 
                         #self.txt2img_config_preset_dropdown = config_preset_dropdown
@@ -457,7 +456,7 @@ def save_config(config_presets, component_map, config_file_name):
                 elif component_id == "img2img_sampling":
                     new_setting_map[component_id] = modules.sd_samplers.samplers_for_img2img[new_value].name
                 else:
-                    if component_id.endswith("ext_ctl_image"):
+                    if component_id.endswith("ext_ctl_image") or component_id == "ext_an_mask_image":
                         continue
                     new_setting_map[component_id] = new_value
 
@@ -495,6 +494,7 @@ def export_config(component_map):
 
         new_setting_map = {}    # dict[str, Any]    {"txt2img_steps": 10, ...}
         ctls = {}
+        an = {}
         for i, component_id in enumerate(component_map.keys()):
             # if component_id not in fields_to_save_list:
             #     #print(f"[Config-Presets] New preset '{new_setting_name}' will not include {component_id}")
@@ -516,13 +516,18 @@ def export_config(component_map):
                             ctls[component_id[11]] = {}
                         ctls[component_id[11]][component_id[13:]]=new_value
                         # ctl[component_id] = new_value
+                    elif component_id.startswith("ext_an_"):
+                        if component_id =="ext_an_mask_image":
+                            continue
+                        an[component_id]=new_value
                     else:
                         new_setting_map[component_id] = new_value
         ext_arr = [None] * len(ctls)
         for key, value in ctls.items():
             ext_arr[int(key)]=value
-
+        ext_arr.append(an)
         new_setting_map["ext"]=ext_arr
+
         aa=json.dumps(new_setting_map)
         return aa
     return func

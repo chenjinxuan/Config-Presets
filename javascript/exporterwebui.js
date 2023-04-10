@@ -76,8 +76,9 @@ function exportData() {
         ext_ctl_image = gradioApp().querySelector("#ControlNet-"+i+"_ext_ctl_image > div.h-60.bg-gray-200 > div > img").src;
         data2["ext"][i]["ext_ctl_image"]=[];
         data2["ext"][i]["ext_ctl_image"][0]=ext_ctl_image;
+        ext.push(data2["ext"][i]);
       }
-      ext.push(data2["ext"][i]);
+
     };
     data2["ext"]=ext;
     const json = JSON.stringify(data2);
@@ -106,8 +107,8 @@ function exportImg2ImgData() {
         ext_ctl_image = gradioApp().querySelector("#ControlNet-"+i+"_ext_ctl_image > div.h-60.bg-gray-200 > div > img").src;
         data2["ext"][i]["ext_ctl_image"]=[];
         data2["ext"][i]["ext_ctl_image"][0]=ext_ctl_image;
+        ext.push(data2["ext"][i]);
       }
-      ext.push(data2["ext"][i]);
     };
     data2["ext"]=ext;
     const json = JSON.stringify(data2);
