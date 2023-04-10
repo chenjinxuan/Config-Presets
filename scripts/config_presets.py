@@ -487,7 +487,6 @@ def save_config(config_presets, component_map, config_file_name):
 
 # Save the current values on the UI to a new entry in the config file
 def export_config(component_map):
-    print(component_map.keys())
     # closure keeps path in memory, it's a hack to get around how click or change expects values to be formatted
     def func(fields_to_save_list, *new_setting):
 
@@ -510,9 +509,10 @@ def export_config(component_map):
                     #     ndarray_to_list(new_value)
                     if component_id.startswith("ControlNet-"):
                         if component_id.endswith("ext_ctl_image"):
+                            print(new_value)
                             continue
 
-                        ctl[component_id[12:]] = new_value
+                        ctl[component_id[13:]] = new_value
                     else:
                         new_setting_map[component_id] = new_value
         new_setting_map["ext"] = []

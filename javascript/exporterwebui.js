@@ -63,13 +63,21 @@ function exportData() {
   sleep(1).then(() => {
     dataStr = gradioApp().querySelector("#setting_sd_model_checkpoint > label > select").value;
     data2Str = gradioApp().querySelector("#config_preset_json > label > textarea").value;
-    ext_ctl_image = gradioApp().querySelector("#ControlNet-0_ext_ctl_image > div.h-60.bg-gray-200 > div > img").src;
+
     const data2 = JSON.parse(data2Str);
     data2["model_name"]=dataStr;
     const host = window.location.host;
     data2["host"]=host;
-    data2["ext"][0]["ext_ctl_image"]=[];
-    data2["ext"][0]["ext_ctl_image"][0]=ext_ctl_image;
+
+
+    for (let i = 0; i < data2.length; i++) {
+      console.log(data2[i]);
+      if (data2[i]["ext_ctl_enabled"] == true) {
+        ext_ctl_image = gradioApp().querySelector("#ControlNet-"+i+"_ext_ctl_image > div.h-60.bg-gray-200 > div > img").src;
+        data2["ext"][i]["ext_ctl_image"]=[];
+        data2["ext"][i]["ext_ctl_image"][0]=ext_ctl_image;
+      }
+    };
     const json = JSON.stringify(data2);
     const blob = new Blob([json], {type: 'application/json'});
     const url = URL.createObjectURL(blob);
@@ -85,13 +93,17 @@ function exportImg2ImgData() {
   sleep(1).then(() => {
     dataStr = gradioApp().querySelector("#setting_sd_model_checkpoint > label > select").value;
     data2Str = gradioApp().querySelector("#config_preset_img2img_json > label > textarea").value;
-    ext_ctl_image = gradioApp().querySelector("#ControlNet-0_ext_ctl_image > div.h-60.bg-gray-200 > div > img").src;
     const data2 = JSON.parse(data2Str);
     data2["model_name"]=dataStr;
     const host = window.location.host;
     data2["host"]=host;
-    data2["ext"][0]["ext_ctl_image"]=[];
-    data2["ext"][0]["ext_ctl_image"][0]=ext_ctl_image;
+    for (let i = 0; i < data2.length; i++) {
+      if (data2[i]["ext_ctl_enabled"]==true){
+        ext_ctl_image = gradioApp().querySelector("#ControlNet-"+i+"_ext_ctl_image > div.h-60.bg-gray-200 > div > img").src;
+        data2["ext"][i]["ext_ctl_image"]=[];
+        data2["ext"][i]["ext_ctl_image"][0]=ext_ctl_image;
+      }
+    }
     const json = JSON.stringify(data2);
     const blob = new Blob([json], {type: 'application/json'});
     const url = URL.createObjectURL(blob);
