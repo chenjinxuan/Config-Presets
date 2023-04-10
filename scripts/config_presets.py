@@ -511,6 +511,8 @@ def export_config(component_map):
                         if component_id.endswith("ext_ctl_image"):
                             print(new_value)
                             continue
+                        if ctls[int(component_id[11])] is None:
+                            ctls[int(component_id[11])] = {}
                         ctls[int(component_id[11])][component_id[12:]]=new_value
                         # ctl[component_id] = new_value
                     else:
