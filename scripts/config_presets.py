@@ -509,7 +509,6 @@ def export_config(component_map):
                     #     ndarray_to_list(new_value)
                     if component_id.startswith("ControlNet-"):
                         if component_id.endswith("ext_ctl_image"):
-                            print(new_value)
                             continue
                         if component_id[11] not in ctls:
                             ctls[component_id[11]] = {}
@@ -517,9 +516,11 @@ def export_config(component_map):
                         # ctl[component_id] = new_value
                     else:
                         new_setting_map[component_id] = new_value
-        # new_setting_map["ext"] = []
+        ext_arr = [None] * len(ctls)
+        for key, value in ctls.items():
+            ext_arr[int(key)]=value
 
-        new_setting_map["ext"]=ctls
+        new_setting_map["ext"]=ext_arr
         aa=json.dumps(new_setting_map)
         return aa
     return func
