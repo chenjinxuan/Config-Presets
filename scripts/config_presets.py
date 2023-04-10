@@ -518,8 +518,7 @@ def export_config(component_map):
                         # ctl[component_id] = new_value
                     elif component_id.startswith("ext_an_"):
                         if component_id =="ext_an_mask_image":
-                            ndarray_to_list(new_value)
-                            an[component_id] = new_value
+                            an[component_id] = ndarray_to_list(new_value)
                             continue
                         an[component_id]=new_value
                     else:
@@ -544,12 +543,13 @@ def write_config_presets_to_file(config_presets, config_file_name: str):
 
 def ndarray_to_list(d):
     if isinstance(d, np.ndarray):
-        d=d.tolist()
-        return
+        return d.tolist()
     for k, v in d.items():
         if isinstance(v, dict):
-            ndarray_to_list(v)
+            d[k] = ndarray_to_list(v)
         elif isinstance(v, np.ndarray):
             d[k] = v.tolist()
         else:
             pass  # do nothing
+    return d
+
