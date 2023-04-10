@@ -511,7 +511,8 @@ def export_config(component_map):
                     if component_id.startswith("ControlNet-"):
                         if component_id.endswith("ext_ctl_image"):
                             continue
-                        ctl[component_id] = new_value
+
+                        ctl[component_id[12:]] = new_value
                     else:
                         new_setting_map[component_id] = new_value
         new_setting_map["ext"] = []
