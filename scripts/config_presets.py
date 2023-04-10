@@ -151,11 +151,11 @@ class Script(scripts.Script):
         component_ids = None
         config_file_name = None
         if self.is_txt2img:
-            component_map = self.txt2img_config_presets
+            component_map = self.txt2img_component_map
             component_ids = self.txt2img_component_ids
             config_file_name = CONFIG_TXT2IMG_FILE_NAME
         else:
-            component_map = self.img2img_config_presets
+            component_map = self.img2img_component_map
             component_ids = self.img2img_component_ids
             config_file_name = CONFIG_IMG2IMG_FILE_NAME
         # print(component_map)
