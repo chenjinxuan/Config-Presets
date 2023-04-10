@@ -457,6 +457,8 @@ def save_config(config_presets, component_map, config_file_name):
                 elif component_id == "img2img_sampling":
                     new_setting_map[component_id] = modules.sd_samplers.samplers_for_img2img[new_value].name
                 else:
+                    if component_id.endswith("ext_ctl_image"):
+                        continue
                     new_setting_map[component_id] = new_value
 
                 #print(f"Saving '{component_id}' as: {new_setting_map[component_id]} ({new_value})")
