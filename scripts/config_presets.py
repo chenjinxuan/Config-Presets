@@ -349,14 +349,6 @@ class Script(scripts.Script):
                             value="Add/Remove...",
                             elem_id="config_preset_add_button",
                         )
-                        # export_button = gr.Button(
-                        #     value="export",
-                        #     elem_id="config_preset_export_button",
-                        # )
-                        # export_button.click(
-                        #     fn=None,
-                        #     _js="function() { exportData() }"
-                        # )
 
                 with gr.Row() as collapsable_row:
                     collapsable_row.visible = False
@@ -475,7 +467,7 @@ def save_config(config_presets, component_map, config_file_name):
 
         #print(f"new_setting_map = {new_setting_map}")
 
-        config_presets.update({new_setting_name: new_setting_map})
+        config_presets[new_setting_name]=new_setting_map
         write_config_presets_to_file(config_presets, config_file_name)
 
         # print(f"self.txt2img_config_preset_dropdown.choices before =\n{self.txt2img_config_preset_dropdown.choices}")
