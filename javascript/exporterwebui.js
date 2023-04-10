@@ -73,12 +73,13 @@ function exportData() {
     for (let i = 0; i < data2["ext"].length; i++) {
       console.log(data2["ext"][i]);
       if (data2["ext"][i]["ext_ctl_enabled"] == true) {
-        ext_ctl_image = gradioApp().querySelector("#ControlNet-"+i+"_ext_ctl_image > div.h-60.bg-gray-200 > div > img").src;
-        data2["ext"][i]["ext_ctl_image"]=[];
-        data2["ext"][i]["ext_ctl_image"][0]=ext_ctl_image;
+        ext_ctl_image = gradioApp().querySelector("#txt2img_ControlNet-"+i+"_ext_ctl_image > div.h-60.bg-gray-200 > div > img").src;
+        data2["ext"][i]["ext_ctl_image"]=ext_ctl_image;
         ext.push(data2["ext"][i]);
       }
       if (data2["ext"][i]["ext_an_enabled"] == true) {
+        ext_an_mask_image = gradioApp().querySelector("#txt2img_ext_an_mask_image > div.h-60.bg-gray-200 > div > img").src;
+        data2["ext"][i]["ext_an_mask_image"]=ext_an_mask_image;
         ext.push(data2["ext"][i]);
       }
     };
@@ -105,12 +106,13 @@ function exportImg2ImgData() {
     const ext = []
     for (let i = 0; i < data2["ext"].length; i++) {
       if (data2["ext"][i]["ext_ctl_enabled"] == true) {
-        ext_ctl_image = gradioApp().querySelector("#ControlNet-"+i+"_ext_ctl_image > div.h-60.bg-gray-200 > div > img").src;
-        data2["ext"][i]["ext_ctl_image"]=[];
-        data2["ext"][i]["ext_ctl_image"][0]=ext_ctl_image;
+        ext_ctl_image = gradioApp().querySelector("#img2img_ControlNet-"+i+"_ext_ctl_image > div.h-60.bg-gray-200 > div > img").src;
+        data2["ext"][i]["ext_ctl_image"]=ext_ctl_image;
         ext.push(data2["ext"][i]);
       }
       if (data2["ext"][i]["ext_an_enabled"] == true) {
+        ext_an_mask_image = gradioApp().querySelector("#ing2img_ext_an_mask_image > div.h-60.bg-gray-200 > div > img").src;
+        data2["ext"][i]["ext_an_mask_image"]=ext_an_mask_image;
         ext.push(data2["ext"][i]);
       }
     };
