@@ -509,6 +509,8 @@ def export_config(component_map):
                     # if component_id == "ext_ctl_image":
                     #     ndarray_to_list(new_value)
                     if component_id.startswith("ControlNet-"):
+                        if component_id.endswith("ext_ctl_image"):
+                            continue
                         ctl[component_id] = new_value
                     else:
                         new_setting_map[component_id] = new_value
