@@ -518,7 +518,7 @@ def export_config(component_map):
                         ctls[component_id[19]][component_id[21:]]=new_value
                         # ctl[component_id] = new_value
                     elif component_id.startswith("txt2img_ext_an_") or component_id.startswith("img2img_ext_an_") :
-                        if component_id =="txt2txt_ext_an_mask_image" or component_id =="img2img_ext_an_mask_image":
+                        if component_id =="txt2img_ext_an_mask_image" or component_id =="img2img_ext_an_mask_image":
                             continue
                         an[component_id]=new_value
                     else:
