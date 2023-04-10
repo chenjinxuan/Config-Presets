@@ -167,6 +167,7 @@ class Script(scripts.Script):
             component_map[component.elem_id] = component
         if component.elem_id is not None and component.elem_id.startswith("ControlNet-"):
             component_map[component.elem_id] = component
+            component_ids.append(component.elem_id)
             #print(f"[Config-Presets][DEBUG]: found component: {component.elem_id} {component}")
 
         #if component.elem_id == "script_list": #bottom of the script dropdown
