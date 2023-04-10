@@ -200,7 +200,7 @@ class Script(scripts.Script):
 
             for dropdownValue in config_presets:
                 preset_values.append(dropdownValue)
-                #print(f"Config Presets: added \"{dropdownValue}\"")
+                print(f"Config Presets: added \"{dropdownValue}\"")
 
             fields_checkboxgroup = gr.CheckboxGroup(choices=component_ids,
                                                     value=component_ids,    #check all checkboxes by default
