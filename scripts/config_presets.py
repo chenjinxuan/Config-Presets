@@ -457,9 +457,19 @@ def save_config(config_presets, component_map, config_file_name):
                 elif component_id == "img2img_sampling":
                     new_setting_map[component_id] = modules.sd_samplers.samplers_for_img2img[new_value].name
                 else:
-                    if component_id.endswith("ext_ctl_image") or component_id.endswith == "ext_an_mask_image":
-                        continue
-                    new_setting_map[component_id] = new_value
+                    # if component_id == "ext_ctl_image":
+                    #     ndarray_to_list(new_value)
+                    if component_id.startswith("txt2img_ControlNet-") or component_id.startswith("img2img_ControlNet-"):
+                        if component_id.endswith("ext_ctl_image"):
+                            continue
+                        new_setting_map[component_id] = new_value
+                        # ctl[component_id] = new_value
+                    elif component_id.startswith("txt2img_ext_an_") or component_id.startswith("img2img_ext_an_") :
+                        if component_id.endswith("ext_an_mask_image"):
+                            continue
+                        new_setting_map[component_id] = new_value
+                    else:
+                        new_setting_map[component_id] = new_value
 
                 #print(f"Saving '{component_id}' as: {new_setting_map[component_id]} ({new_value})")
 
