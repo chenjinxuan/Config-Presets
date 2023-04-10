@@ -299,7 +299,8 @@ class Script(scripts.Script):
                                         write_config_presets_to_file(config_presets, config_file_name)
 
                                         preset_keys = list(config_presets.keys())
-                                        return gr.Dropdown.update(value=preset_keys[len(preset_keys)-1], choices=preset_keys)
+                                        component = component_map["config_preset_txt2img_dropdown"]
+                                        return component.update(value=preset_keys[len(preset_keys)-1], choices=preset_keys)
                                     return gr.Dropdown.update() # do nothing if no value is selected
 
                                 trash_button = gr.Button(
