@@ -25,77 +25,77 @@ class Script(scripts.Script):
         #self.txt2img_config_preset_dropdown = None
 
         # These are the settings from the UI that are saved for each preset
-        # self.txt2img_component_ids = [   # mirrors the config_preset_dropdown.change(output) events and config_preset_dropdown_change()
-        #     "txt2img_prompt",
-        #     "txt2img_neg_prompt",
-        #     "txt2img_sampling",
-        #     "txt2img_steps",
-        #     "txt2img_width",
-        #     "txt2img_height",
-        #     "txt2img_batch_count",
-        #     "txt2img_batch_size",
-        #     "txt2img_restore_faces",
-        #     "txt2img_enable_hr",
-        #     "txt2img_hr_scale",
-        #     "txt2img_hr_upscaler",
-        #     "txt2img_hires_steps",
-        #     "txt2img_denoising_strength",
-        #     "txt2img_cfg_scale",
-        #     "txt2img_gallery",
-        #     # "ext_ctl_enabled",
-        #     # "ext_ctl_scribble_mode",
-        #     # "ext_ctl_rgbbgr_mode",
-        #     # "ext_ctl_lowvram",
-        #     # "ext_ctl_guess_mode",
-        #     # "ext_ctl_module",
-        #     # "ext_ctl_model",
-        #     # "ext_ctl_weight",
-        #     # "ext_ctl_guidance_start",
-        #     # "ext_ctl_guidance_end",
-        #     # "ext_ctl_processor_res",
-        #     # "ext_ctl_threshold_a",
-        #     # "ext_ctl_threshold_b",
-        #     # "ext_ctl_resize_mode",
-        #     # "ext_ctl_canvas_width",
-        #     # "ext_ctl_canvas_height",
-        #    # "component-1285",
-        # ]
-        # self.img2img_component_ids = [   # mirrors the config_preset_dropdown.change(output) events and config_preset_dropdown_change()
-        #     "img2img_prompt",
-        #     "img2img_neg_prompt",
-        #     "img2img_sampling",
-        #     "resize_mode",
-        #     "img2img_steps",
-        #     "img2img_width",
-        #     "img2img_height",
-        #     "img2img_batch_count",
-        #     "img2img_batch_size",
-        #     "img2img_cfg_scale",
-        #     "img2img_denoising_strength",
-        #     "img2img_restore_faces",
-        #     # "ext_ctl_enabled",
-        #     # "ext_ctl_scribble_mode",
-        #     # "ext_ctl_rgbbgr_mode",
-        #     # "ext_ctl_lowvram",
-        #     # "ext_ctl_guess_mode",
-        #     # "ext_ctl_module",
-        #     # "ext_ctl_model",
-        #     # "ext_ctl_weight",
-        #     # "ext_ctl_guidance_start",
-        #     # "ext_ctl_guidance_end",
-        #     # "ext_ctl_processor_res",
-        #     # "ext_ctl_threshold_a",
-        #     # "ext_ctl_threshold_b",
-        #     # "ext_ctl_resize_mode",
-        #     # "ext_ctl_canvas_width",
-        #     # "ext_ctl_canvas_height",
-        #     # "ext_ctl_image",
-        # ]
+        self.txt2img_component_ids = [   # mirrors the config_preset_dropdown.change(output) events and config_preset_dropdown_change()
+            # "txt2img_prompt",
+            # "txt2img_neg_prompt",
+            # "txt2img_sampling",
+            # "txt2img_steps",
+            # "txt2img_width",
+            # "txt2img_height",
+            # "txt2img_batch_count",
+            # "txt2img_batch_size",
+            # "txt2img_restore_faces",
+            # "txt2img_enable_hr",
+            # "txt2img_hr_scale",
+            # "txt2img_hr_upscaler",
+            # "txt2img_hires_steps",
+            # "txt2img_denoising_strength",
+            # "txt2img_cfg_scale",
+            # "txt2img_gallery",
+            # "ext_ctl_enabled",
+            # "ext_ctl_scribble_mode",
+            # "ext_ctl_rgbbgr_mode",
+            # "ext_ctl_lowvram",
+            # "ext_ctl_guess_mode",
+            # "ext_ctl_module",
+            # "ext_ctl_model",
+            # "ext_ctl_weight",
+            # "ext_ctl_guidance_start",
+            # "ext_ctl_guidance_end",
+            # "ext_ctl_processor_res",
+            # "ext_ctl_threshold_a",
+            # "ext_ctl_threshold_b",
+            # "ext_ctl_resize_mode",
+            # "ext_ctl_canvas_width",
+            # "ext_ctl_canvas_height",
+           # "component-1285",
+        ]
+        self.img2img_component_ids = [   # mirrors the config_preset_dropdown.change(output) events and config_preset_dropdown_change()
+            # "img2img_prompt",
+            # "img2img_neg_prompt",
+            # "img2img_sampling",
+            # "resize_mode",
+            # "img2img_steps",
+            # "img2img_width",
+            # "img2img_height",
+            # "img2img_batch_count",
+            # "img2img_batch_size",
+            # "img2img_cfg_scale",
+            # "img2img_denoising_strength",
+            # "img2img_restore_faces",
+            # "ext_ctl_enabled",
+            # "ext_ctl_scribble_mode",
+            # "ext_ctl_rgbbgr_mode",
+            # "ext_ctl_lowvram",
+            # "ext_ctl_guess_mode",
+            # "ext_ctl_module",
+            # "ext_ctl_model",
+            # "ext_ctl_weight",
+            # "ext_ctl_guidance_start",
+            # "ext_ctl_guidance_end",
+            # "ext_ctl_processor_res",
+            # "ext_ctl_threshold_a",
+            # "ext_ctl_threshold_b",
+            # "ext_ctl_resize_mode",
+            # "ext_ctl_canvas_width",
+            # "ext_ctl_canvas_height",
+            # "ext_ctl_image",
+        ]
 
 
         # Mapping between component labels and the actual components in ui.py
-        # self.txt2img_component_map = {k: None for k in self.txt2img_component_ids}  # gets filled up in the after_component() method
-        # self.img2img_component_map = {k: None for k in self.img2img_component_ids}  # gets filled up in the after_component() method
+        self.txt2img_component_map = {k: None for k in self.txt2img_component_ids}  # gets filled up in the after_component() method
+        self.img2img_component_map = {k: None for k in self.img2img_component_ids}  # gets filled up in the after_component() method
 
         # Load txt2img and img2img config files
         try:
@@ -151,12 +151,12 @@ class Script(scripts.Script):
         component_ids = None
         config_file_name = None
         if self.is_txt2img:
-            component_map = {}
-            component_ids = []
+            component_map = self.txt2img_config_presets
+            component_ids = self.txt2img_component_ids
             config_file_name = CONFIG_TXT2IMG_FILE_NAME
         else:
-            component_map = {}
-            component_ids = []
+            component_map = self.img2img_config_presets
+            component_ids = self.img2img_component_ids
             config_file_name = CONFIG_IMG2IMG_FILE_NAME
         # print(component_map)
         #if component.label in self.component_map:
