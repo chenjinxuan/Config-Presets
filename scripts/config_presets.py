@@ -542,6 +542,9 @@ def write_config_presets_to_file(config_presets, config_file_name: str):
 
 
 def ndarray_to_list(d):
+    if isinstance(d, np.ndarray):
+        d=d.tolist()
+        return
     for k, v in d.items():
         if isinstance(v, dict):
             ndarray_to_list(v)
