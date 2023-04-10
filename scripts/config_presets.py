@@ -512,7 +512,7 @@ def export_config(component_map):
                             continue
                         if component_id[11] not in ctls:
                             ctls[component_id[11]] = {}
-                        ctls[component_id[11]][component_id[12:]]=new_value
+                        ctls[component_id[11]][component_id[13:]]=new_value
                         # ctl[component_id] = new_value
                     else:
                         new_setting_map[component_id] = new_value
