@@ -313,7 +313,7 @@ class Script(scripts.Script):
                                 )
                                 trash_button.click(
                                     fn=None,
-                                    _js="function() { config_preset_dropdown_change()}",  # restart Gradio
+                                    _js="function() { config_preset_settings_restart_gradio()}",  # restart Gradio
                                 )
 
                             # with gr.Column(scale=2, min_width=55):
