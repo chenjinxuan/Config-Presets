@@ -73,13 +73,17 @@ function exportData() {
     for (let i = 0; i < data2["ext"].length; i++) {
       console.log(data2["ext"][i]);
       if (data2["ext"][i]["ext_ctl_enabled"] == true) {
-        ext_ctl_image = gradioApp().querySelector("#txt2img_ControlNet-"+i+"_ext_ctl_image > div.h-60.bg-gray-200 > div > img").src;
-        data2["ext"][i]["ext_ctl_image"]=ext_ctl_image;
+        ext_ctl_image = gradioApp().querySelector("#txt2img_ControlNet-"+i+"_ext_ctl_image > div.h-60.bg-gray-200 > div > img");
+        if (ext_ctl_image){
+          data2["ext"][i]["ext_ctl_image"]=ext_ctl_image.src;
+        }
         ext.push(data2["ext"][i]);
       }
       if (data2["ext"][i]["ext_an_enabled"] == true) {
-        ext_an_mask_image = gradioApp().querySelector("#txt2img_ext_an_mask_image > div.h-60.bg-gray-200 > div > img").src;
-        data2["ext"][i]["ext_an_mask_image"]=ext_an_mask_image;
+        ext_an_mask_image = gradioApp().querySelector("#txt2img_ext_an_mask_image > div.h-60.bg-gray-200 > div > img");
+        if (ext_an_mask_image){
+          data2["ext"][i]["ext_an_mask_image"]=ext_an_mask_image.src;
+        }
         ext.push(data2["ext"][i]);
       }
     };
@@ -106,17 +110,46 @@ function exportImg2ImgData() {
     const ext = []
     for (let i = 0; i < data2["ext"].length; i++) {
       if (data2["ext"][i]["ext_ctl_enabled"] == true) {
-        ext_ctl_image = gradioApp().querySelector("#img2img_ControlNet-"+i+"_ext_ctl_image > div.h-60.bg-gray-200 > div > img").src;
-        data2["ext"][i]["ext_ctl_image"]=ext_ctl_image;
+        ext_ctl_image = gradioApp().querySelector("#img2img_ControlNet-"+i+"_ext_ctl_image > div.h-60.bg-gray-200 > div > img");
+        if (ext_ctl_image) {
+          data2["ext"][i]["ext_ctl_image"]=ext_ctl_image.src;
+        }
         ext.push(data2["ext"][i]);
       }
       if (data2["ext"][i]["ext_an_enabled"] == true) {
-        ext_an_mask_image = gradioApp().querySelector("#ing2img_ext_an_mask_image > div.h-60.bg-gray-200 > div > img").src;
-        data2["ext"][i]["ext_an_mask_image"]=ext_an_mask_image;
+        ext_an_mask_image = gradioApp().querySelector("#img2img_ext_an_mask_image > div.h-60.bg-gray-200 > div > img");
+        if (ext_an_mask_image) {
+          data2["ext"][i]["ext_an_mask_image"]=ext_an_mask_image.src;
+        }
         ext.push(data2["ext"][i]);
       }
-    };
+    }
     data2["ext"]=ext;
+    //#img2img_image > div.h-60.bg-gray-200 > div > img
+    img2img_image= gradioApp().querySelector("#img2img_image > div.h-60.bg-gray-200 > div > img");
+    if (img2img_image) {
+      data2["img2img_image"]=img2img_image.src;
+    }
+    img2img_sketch= gradioApp().querySelector("#img2img_sketch > div.h-60.bg-gray-200 > div > img");
+    if (img2img_sketch) {
+      data2["img2img_sketch"]=img2img_sketch.src;
+    }
+    img2maskimg= gradioApp().querySelector("#img2maskimg > div.h-60.bg-gray-200 > div > img");
+    if (img2maskimg) {
+      data2["img2maskimg"]=img2maskimg.src;
+    }
+    inpaint_sketch= gradioApp().querySelector("#inpaint_sketch > div.h-60.bg-gray-200 > div > img");
+    if (inpaint_sketch) {
+      data2["inpaint_sketch"]=inpaint_sketch.src;
+    }
+    img_inpaint_base= gradioApp().querySelector("#img_inpaint_base > div.h-60.bg-gray-200 > div > img");
+    if (img_inpaint_base) {
+      data2["img_inpaint_base"]=img_inpaint_base.src;
+    }
+    img_inpaint_mask= gradioApp().querySelector("#img_inpaint_mask > div.h-60.bg-gray-200 > div > img");
+    if (img_inpaint_mask) {
+      data2["img_inpaint_mask"]=img_inpaint_mask.src;
+    }
     const json = JSON.stringify(data2);
     const blob = new Blob([json], {type: 'application/json'});
     const url = URL.createObjectURL(blob);
