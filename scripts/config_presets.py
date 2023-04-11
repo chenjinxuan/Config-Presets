@@ -3,6 +3,7 @@ import modules.sd_samplers
 import modules.scripts as scripts
 import gradio as gr
 import numpy as np
+from PIL import Image
 import base64
 import json
 import os
@@ -536,7 +537,7 @@ def export_config(component_map,img2img_image_ids):
                             continue
                         an[component_id[8:]]=new_value
                     elif component_id in img2img_image_ids:
-                        encoded_image = base64.b64encode(new_value).decode('utf-8')
+                        encoded_image = image_to_json(new_value)
                         new_setting_map[component_id] = encoded_image
                     else:
                         new_setting_map[component_id] = new_value
@@ -557,6 +558,15 @@ def write_config_presets_to_file(config_presets, config_file_name: str):
         outfile.write(json_object)
 
 
+def image_to_json(d):
+    if isinstance(d, Image.Image):
+        return base64.b64encode(d).decode('utf-8')
+    for k, v in d.items():
+        if isinstance(v, dict):
+            d[k] = ndarray_to_list(v)
+        else:
+            pass  # do nothing
+    return d
 
 def ndarray_to_list(d):
     if isinstance(d, np.ndarray):
