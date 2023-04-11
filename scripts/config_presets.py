@@ -309,12 +309,12 @@ class Script(scripts.Script):
                                 trash_button.click(
                                     fn=delete_selected_preset,
                                     inputs=[config_preset_dropdown],
-                                   # outputs=[config_preset_dropdown],
+                                    outputs=[config_preset_dropdown],
                                 )
-                                # trash_button.click(
-                                #     fn=None,
-                                #     _js="config_preset_settings_restart_gradio()",  # restart Gradio
-                                # )
+                                trash_button.click(
+                                    fn=None,
+                                    _js="function() { config_preset_dropdown_change()}",  # restart Gradio
+                                )
 
                             # with gr.Column(scale=2, min_width=55):
                             #     def open_file(f):
