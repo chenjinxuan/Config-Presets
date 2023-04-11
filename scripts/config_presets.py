@@ -191,16 +191,16 @@ class Script(scripts.Script):
                     # print(component.elem_id)
                     index_type_components.append(component.elem_id)
 
-            #preset_values = []
+            preset_values = []
             config_presets = None
             if self.is_txt2img:
                 config_presets = self.txt2img_config_presets
             else:
                 config_presets = self.img2img_config_presets
 
-            # for dropdownValue in config_presets:
-            #     preset_values.append(dropdownValue)
-            #     print(f"Config Presets: added \"{dropdownValue}\"")
+            for dropdownValue in config_presets:
+                preset_values.append(dropdownValue)
+                print(f"Config Presets: added \"{dropdownValue}\"")
 
             fields_checkboxgroup = gr.CheckboxGroup(choices=component_ids,
                                                     value=component_ids,    #check all checkboxes by default
@@ -236,7 +236,7 @@ class Script(scripts.Script):
 
                         config_preset_dropdown = gr.Dropdown(
                             label="Config Presets",
-                            choices=config_presets,
+                            choices=preset_values,
                             elem_id="config_preset_txt2img_dropdown" if self.is_txt2img else "config_preset_img2img_dropdown",
                         )
                         config_preset_dropdown.style(container=False) #set to True to give it a white box to sit in
@@ -309,7 +309,7 @@ class Script(scripts.Script):
                                 trash_button.click(
                                     fn=delete_selected_preset,
                                     inputs=[config_preset_dropdown],
-                                    outputs=[config_preset_dropdown],
+                                   # outputs=[config_preset_dropdown],
                                 )
                                 # trash_button.click(
                                 #     fn=None,
