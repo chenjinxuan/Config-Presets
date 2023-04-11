@@ -23,6 +23,14 @@ class Script(scripts.Script):
         super().__init__(*args, **kwargs)
 
         #self.txt2img_config_preset_dropdown = None
+        self.img2img_image_ids = [
+            "img2img_image",
+            "img2img_sketch",
+            "img2maskimg"
+            "inpaint_sketch",
+            "img_inpaint_base",
+            "img_inpaint_mask"
+        ]
 
         # These are the settings from the UI that are saved for each preset
         self.txt2img_component_ids = [   # mirrors the config_preset_dropdown.change(output) events and config_preset_dropdown_change()
@@ -274,7 +282,7 @@ class Script(scripts.Script):
                         )
 
                         export_button.click(
-                            fn=export_config(component_map),
+                            fn=export_config(component_map,self.img2img_image_ids),
                             inputs=list(
                                 [fields_checkboxgroup] + [component_map[comp_name] for comp_name in
                                                                            component_ids if
@@ -494,7 +502,7 @@ def save_config(config_presets, component_map, config_file_name):
 
 
 # Save the current values on the UI to a new entry in the config file
-def export_config(component_map):
+def export_config(component_map,img2img_image_ids):
     # closure keeps path in memory, it's a hack to get around how click or change expects values to be formatted
     def func(fields_to_save_list, *new_setting):
 
@@ -527,6 +535,9 @@ def export_config(component_map):
                         if component_id.endswith("ext_an_mask_image"):
                             continue
                         an[component_id[8:]]=new_value
+                    elif component_id in img2img_image_ids:
+                        encoded_image = base64.b64encode(new_value).decode('utf-8')
+                        new_setting_map[component_id] = encoded_image
                     else:
                         new_setting_map[component_id] = new_value
         ext_arr = [None] * len(ctls)
