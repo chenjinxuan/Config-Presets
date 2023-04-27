@@ -70,6 +70,7 @@ class Script(scripts.Script):
            # "component-1285",
         ]
         self.img2img_component_ids = [   # mirrors the config_preset_dropdown.change(output) events and config_preset_dropdown_change()
+            "resize_mode"
             # "img2img_prompt",
             # "img2img_neg_prompt",
             # "img2img_sampling",
@@ -169,8 +170,8 @@ class Script(scripts.Script):
             config_file_name = CONFIG_IMG2IMG_FILE_NAME
         # print(component_map)
         #if component.label in self.component_map:
-        # if component.elem_id in component_map:
-        #     component_map[component.elem_id] = component
+        if component.elem_id in component_map:
+            component_map[component.elem_id] = component
         if component.elem_id is not None and component.elem_id.startswith("txt2img"):
             component_map[component.elem_id] = component
             component_ids.append(component.elem_id)
