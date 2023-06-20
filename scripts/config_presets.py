@@ -529,6 +529,7 @@ def export_config(component_map,img2img_image_ids):
                     if component_id.startswith("txt2img_ControlNet-") or component_id.startswith("img2img_ControlNet-"):
                         if component_id.endswith("ext_ctl_image"):
                             continue
+
                         if component_id[19] not in ctls:
                             ctls[component_id[19]] = {}
                         ctls[component_id[19]][component_id[21:]]=new_value
