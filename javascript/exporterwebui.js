@@ -68,7 +68,7 @@ function exportData() {
     const data2 = JSON.parse(data2Str);
     data2["model_name"]=dataStr;
     if (clip) {
-      data2["CLIP_stop_at_last_layers"]=parseInt(clip.value, 1);
+      data2["CLIP_stop_at_last_layers"]=parseInt(clip.value, 10);
     }
     data2["vae"]=vae;
 
@@ -115,7 +115,7 @@ function exportImg2ImgData() {
     data2["model_name"]=dataStr;
     data2["vae"]=vae;
     if (clip) {
-      data2["CLIP_stop_at_last_layers"]=parseInt(clip.value, 1);
+      data2["CLIP_stop_at_last_layers"]=parseInt(clip.value, 10);
     }
     const host = window.location.host;
     data2["host"]=host;
