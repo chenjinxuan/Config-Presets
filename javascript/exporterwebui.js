@@ -92,6 +92,9 @@ function exportData() {
         }
         ext.push(data2["ext"][i]);
       }
+      if (data2["ext"][i]["script_txt2img_adetailer_ad_enable"] == true) {
+        ext.push(data2["ext"][i]);
+      }
     };
     data2["ext"]=ext;
     const json = JSON.stringify(data2);
@@ -133,6 +136,9 @@ function exportImg2ImgData() {
         if (ext_an_mask_image) {
           data2["ext"][i]["ext_an_mask_image"]=ext_an_mask_image.src;
         }
+        ext.push(data2["ext"][i]);
+      }
+      if (data2["ext"][i]["script_txt2img_adetailer_ad_enable"] == true) {
         ext.push(data2["ext"][i]);
       }
     }
