@@ -92,7 +92,7 @@ function exportData() {
         }
         ext.push(data2["ext"][i]);
       }
-      if (data2["ext"][i]["adetailer_ad_enable"] == true) {
+      if (data2["ext"][i]["ad_enable"] == true) {
         ext.push(data2["ext"][i]);
       }
     };
@@ -138,7 +138,7 @@ function exportImg2ImgData() {
         }
         ext.push(data2["ext"][i]);
       }
-      if (data2["ext"][i]["adetailer_ad_enable"] == true) {
+      if (data2["ext"][i]["ad_enable"] == true) {
         ext.push(data2["ext"][i]);
       }
     }

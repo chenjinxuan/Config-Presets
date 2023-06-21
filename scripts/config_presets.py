@@ -538,8 +538,8 @@ def export_config(component_map,img2img_image_ids):
                         if component_id.endswith("ext_an_mask_image"):
                             continue
                         an[component_id[8:]]=new_value
-                    elif component_id.startswith("script_txt2img_") or component_id.startswith("script_img2img_"):
-                        adetailer[component_id[15:]]=new_value
+                    elif component_id.startswith("script_txt2img_adetailer_") or component_id.startswith("script_img2img_adetailer_"):
+                        adetailer[component_id[25:]]=new_value
                     elif component_id in img2img_image_ids:
                         continue
                     else:
