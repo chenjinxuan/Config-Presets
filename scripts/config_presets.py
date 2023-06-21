@@ -470,9 +470,11 @@ def save_config(config_presets, component_map, config_file_name):
                             continue
                         new_setting_map[component_id] = new_value
                         # ctl[component_id] = new_value
-                    elif component_id.startswith("txt2img_ext_an_") or component_id.startswith("img2img_ext_an_") :
+                    elif component_id.startswith("txt2img_ext_an_") or component_id.startswith("img2img_ext_an_"):
                         if component_id.endswith("ext_an_mask_image"):
                             continue
+                        new_setting_map[component_id] = new_value
+                    elif component_id.startswith("script_txt2img_") or component_id.startswith("script_img2img_"):
                         new_setting_map[component_id] = new_value
                     else:
                         new_setting_map[component_id] = new_value
@@ -534,10 +536,12 @@ def export_config(component_map,img2img_image_ids):
                             ctls[component_id[19]] = {}
                         ctls[component_id[19]][component_id[21:]]=new_value
                         # ctl[component_id] = new_value
-                    elif component_id.startswith("txt2img_ext_an_") or component_id.startswith("img2img_ext_an_") :
+                    elif component_id.startswith("txt2img_ext_an_") or component_id.startswith("img2img_ext_an_"):
                         if component_id.endswith("ext_an_mask_image"):
                             continue
                         an[component_id[8:]]=new_value
+                    elif component_id.startswith("script_txt2img_") or component_id.startswith("script_img2img_"):
+                        an[component_id[15:]]=new_value
                     elif component_id in img2img_image_ids:
                         continue
                     else:
