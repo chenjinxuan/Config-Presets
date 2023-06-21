@@ -511,6 +511,7 @@ def export_config(component_map,img2img_image_ids):
         new_setting_map = {}    # dict[str, Any]    {"txt2img_steps": 10, ...}
         ctls = {}
         an = {}
+        adetailer ={}
         for i, component_id in enumerate(component_map.keys()):
             # if component_id not in fields_to_save_list:
             #     #print(f"[Config-Presets] New preset '{new_setting_name}' will not include {component_id}")
@@ -538,7 +539,7 @@ def export_config(component_map,img2img_image_ids):
                             continue
                         an[component_id[8:]]=new_value
                     elif component_id.startswith("script_txt2img_") or component_id.startswith("script_img2img_"):
-                        an[component_id[15:]]=new_value
+                        adetailer[component_id[15:]]=new_value
                     elif component_id in img2img_image_ids:
                         continue
                     else:
@@ -547,6 +548,7 @@ def export_config(component_map,img2img_image_ids):
         for key, value in ctls.items():
             ext_arr[int(key)]=value
         ext_arr.append(an)
+        ext_arr.append(adetailer)
         new_setting_map["ext"]=ext_arr
 
         aa=json.dumps(new_setting_map)
