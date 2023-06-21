@@ -172,10 +172,7 @@ class Script(scripts.Script):
         #if component.label in self.component_map:
         if component.elem_id in component_map:
             component_map[component.elem_id] = component
-        if component.elem_id is not None and component.elem_id.startswith("txt2img"):
-            component_map[component.elem_id] = component
-            component_ids.append(component.elem_id)
-        if component.elem_id is not None and component.elem_id.startswith("img2img"):
+        if component.elem_id is not None and (component.elem_id.startswith("txt2img") or component.elem_id.startswith("img2img") or component.elem_id.startswith("script_")):
             component_map[component.elem_id] = component
             component_ids.append(component.elem_id)
             #print(f"[Config-Presets][DEBUG]: found component: {component.elem_id} {component}")
